@@ -2,4 +2,5 @@
 /craft/storage/*
 !/craft/storage/logo/*
 /craft/app
+/craft/config
 *.codekit3
