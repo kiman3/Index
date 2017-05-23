@@ -4,3 +4,5 @@
 /craft/app
 /craft/config
 *.codekit3
+*.sublime-project
+*.sublime-workspace
