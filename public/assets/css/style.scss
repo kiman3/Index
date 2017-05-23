@@ -4,14 +4,16 @@
 @import 'flexboxgrid.min.scss';
 
 // Font stacks
-$font: GT Cinetyped, Helvetica, Arial, sans-serif;
+$font: GT Cinetype, Helvetica, Arial, sans-serif;
 $font2: Times New Roman, Times, serif;
 
 // Main colors
 $black: #000000;
 $white: #ffffff;
 $background: $black; 
-$text: $white;
+$text: #ccc;
+$grey1: #2c2c2c;
+$grey2: #666;
 
 // Global measurements
 $padding-main: 1em;
@@ -47,7 +49,6 @@ $width-xl: 90em;
 	}
 }
 
-
 // Pretty underlines for capable browsers
 @mixin underline{
 	text-decoration: underline;
@@ -72,23 +73,6 @@ body{
 	margin: 0;
 	overflow-x: hidden;
 	text-rendering: optimizeLegibility;
-	transition: background 0.5s ease-in-out;
-
-	@include r(sm){
-		font-size: 1em;
-	}
-
-	@include r(md){
-		font-size: 1.125em;
-	}
-
-	@include r(lg){
-		font-size: 1.25em;
-	}
-
-	@include r(xl){
-		font-size: 1.375em;
-	}
 }
 
 	a{
@@ -109,7 +93,6 @@ body{
 
 	h1, h2, h3, h4, h5, h6{
 		font: inherit;
-		font-weight: bold;
 		line-height: 1.1;
 		margin: 0;
 			margin-bottom: $line-height;
@@ -142,6 +125,135 @@ body{
 		color: inherit;
 	}
 
-.site{
-	padding: 5%;
+#container{
+	padding: 1rem;
 }
+
+	#coordinates{
+		padding: $padding-main;
+			padding-top: 5em;
+
+		@include r(md){
+			border: 3rem solid transparent;
+				border-right-width: 4.2rem;
+				border-left-width: 4rem;
+			float: left;
+			height: 100%;
+			padding: 0;
+			position: absolute;
+				top: 0;
+				left: 0;
+			width: 100%;
+		}
+	}
+
+		.projects{
+			height: 100%;
+			position: absolute;
+				top: 0;
+				left: 0;
+			width: 100%;
+			z-index: 100;
+		}
+
+			.project{
+				display: block;
+				text-decoration: none;
+
+				@include r(md){
+					margin-top: -0.5em;
+					position: absolute;
+					max-width: 20%;
+				}
+			}
+
+				.project-meta{}
+
+					.project-title{
+						line-height: 1.15;
+						margin: 0;
+						position: relative;
+
+						@include r(m){
+							white-space: nowrap;
+						}
+
+						&:after, &:before{
+							background: #555;
+							backface-visibility: hidden;
+							border-radius: 5px;
+							content: "";
+							display: block;
+							height: 10px;
+							position: absolute;
+								top: 0.25em;
+								left: -1.1875rem;
+							transform: scale(1.25);
+							transition: background 0.2s ease, transform .5s linear;
+							width: 10px;
+						}
+					}
+
+					.project-typology{
+						color: $grey2;
+					}
+
+		.axis{
+			display: none;
+
+			@include r(md){
+				background: #2c2c2c;
+				color: #999;
+				display: block;
+				font-feature-settings: "onum" 0, "lnum" 1;
+				position: absolute;
+				z-index: 10;
+			}
+		}
+
+			.y{
+				height: 100%;
+				top: 0;
+				left: 50%;
+				text-align: center;
+				width: 1px;
+			}
+
+				.y span{
+					height: 1em;
+					line-height: 1;
+					position: absolute;
+					width: 10em;
+				}
+
+					.y-top{
+						top: -1.75rem;
+						left: -5em;
+					}
+
+					.y-bottom{
+						bottom: -1.75rem;
+						left: -5em;
+					}
+
+			.x{
+				height: 1px;
+				top: 50%;
+				left: 0;
+				width: 100%;
+			}
+
+				.x span{
+					height: 1em;
+					line-height: 1;
+					position: absolute;
+						top: -0.5em;
+				}
+
+					.x-left{
+						left: -2.75rem;
+					}
+
+					.x-right{
+						right: -3rem;
+					}

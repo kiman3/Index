@@ -20,14 +20,29 @@
 {% extends "_layout" %}
 
 {% block content %}
-	<h1>{{ entry.title }}</h1>
-
-	{{ entry.body }}
-
-	<h2>Recent Projects</h2>
-	<ul>
-		{% for entry in craft.entries.section('projects').limit(5).find() %}
-			<li><a href="{{ entry.url }}">{{ entry.title }}</a></li>
+	<div id="coordinates">
+		<div class="projects">
+		{% for entry in craft.entries.section('projects') %}
+			<a href="{{ entry.url }}" class="project" style="top: {{ entry.yPosition }}%; left: {{ entry.xPosition }}%;">
+				<div class="project-meta">
+					<h2 class="project-title">{{ entry.title }}</h2>
+					<div class="project-typology">{{ entry.typology }}</div>
+				</div>
+				<div class="project-img">
+					<div class="pr-img">
+						
+					</div>
+				</div>
+			</a>
 		{% endfor %}
-	</ul>
+		</div>
+		<div class="axis x">
+			<span class="x-left">2011</span>
+			<span class="x-right">Now</span>
+		</div>
+		<div class="axis y">
+			<span class="y-top">Analog</span>
+			<span class="y-bottom">Digital</span>
+		</div>
+	</div>
 {% endblock %}

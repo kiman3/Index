@@ -20,26 +20,15 @@
 
 <body>
 	<div id="container">
-		<header id="header">
+		<header id="header" class="header-main">
 			<h1><a href="{{ siteUrl }}">{{ siteName }}</a></h1>
-
-			<nav>
-				<ul>
-					<li><a href="{{ url('projects') }}" {% if craft.request.firstSegment == 'projects' %}class="active"{% endif %}>Projects</a></li>
-				</ul>
-			</nav>
 		</header>
 
 		<main id="content" role="main">
 			{% block content %}
-				<p>If you see me, you haven’t set your <code>{% verbatim %}{% block content %}…{% endblock %}{% endverbatim %}</code> yet.</p>
-				<p>See Twig’s <a href="http://twig.sensiolabs.org/doc/templates.html#template-inheritance">Template Inheritance</a> documentation for an explanation.</p>
+				<p>Something went wrong. Sorry about that.</p>
 			{% endblock %}
 		</main>
-
-		<footer id="footer">
-			© {{ now.year }}
-		</footer>
 	</div>
 </body>
 </html>
