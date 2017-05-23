@@ -1,16 +1,17 @@
-@import 'css/normalize-min.scss';
-@import 'css/normalize-opentype-min.scss';
-@import 'css/flexboxgrid.min.scss'; // Include Flexbox grid
+@import 'normalize-min.scss';
+@import 'fonts.scss';
+@import 'normalize-opentype-min.scss';
+@import 'flexboxgrid.min.scss';
 
 // Font stacks
-$font: Helvetica, Arial, sans-serif;
+$font: GT Cinetyped, Helvetica, Arial, sans-serif;
 $font2: Times New Roman, Times, serif;
 
 // Main colors
 $black: #000000;
 $white: #ffffff;
-$background: $white; 
-$text: $black;
+$background: $black; 
+$text: $white;
 
 // Global measurements
 $padding-main: 1em;
@@ -65,7 +66,7 @@ html{}
 body{
 	background: $background;
 	color: $text;
-	font: 400 1em/1.75 $font;
+	font: 400 1em/1.375 $font;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
 	margin: 0;
