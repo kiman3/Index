@@ -15,10 +15,55 @@
 
 {% extends "_layout" %}
 
+{% block header %}
+<header id="header" class="header-main entry-header row">
+	<div class="col-md-4">
+		<h2 class="site-title">{{ siteName }}</h2>
+		<div class="site-description">Designer at Snøhetta</div>
+	</div>
+	<div class="col-md-3">
+		<h1 class="entry-title">{{ entry.title }}</h1>
+		<p>{{ entry.typology }}</p>
+	</div>
+	<div class="col-md-3">
+		<div><a href="/">Back to index</a></div>
+		<div>1/11</div>
+	</div>
+</header>
+{% endblock %}
+
 {% block content %}
-	<article>
-		<h1>{{ entry.title }}</h1>
-		<p>Posted on {{ entry.postDate.format('F d, Y') }}</p>
-		{{ entry.body }}
+	<article class="entry-article">
+		<header class="entry-article-header row">
+			<div class="col-md-3">
+				<div class="entry-meta">
+					<p>2011–2012</p>
+				</div>
+			</div>
+			<div class="col-md-8 col-md-offset-1">
+				<!-- <p class="entry-date">Posted on {{ entry.postDate.format('F d, Y') }}</p> -->
+				<p class="entry-desc">A magazine being responsive beyond screens.</p>
+				<p class="entry-desc">The web format is challenged by exploring the void between analog and digital media, expressed as a flexible design that responds to the screen resolution – and to print. Through interviews with leading design studios, the content informed the design process. Reformat aims to change the existing mindset by proving that print today often is one of many states of digital&nbsp;objects.</p>
+			</div>
+		</header>
+		<div class="entry-article-content">
+		{% for block in entry.projectContent %}
+
+			{% if block.type == "rowImage" %}
+			<div class="entry-article-image row">
+				{% set asset = block.projectImage.first() %}
+				{% if asset %}
+					<div class="col-md-1">
+						<div class="asset-meta">{{ asset.extension }}<br>{{ ceil(asset.size/1000) }} kB</div>
+					</div>
+					<div class="col-md-{{ block.imageWidth }} col-md-offset-{{ block.imageOffset }}">
+						<img src="{{ asset.getUrl }}" alt="Project image" class="entry-img">
+					</div>
+				{% endif %}
+			</div>
+			{% endif %}
+
+		{% endfor %}
+		</div>
 	</article>
 {% endblock %}

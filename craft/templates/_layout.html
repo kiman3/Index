@@ -19,11 +19,13 @@
 </head>
 
 <body>
-	<div id="container">
+	<div id="container" class="container-fluid">
+		{% block header %}
 		<header id="header" class="header-main">
 			<h1 class="site-title">{{ siteName }}</h1>
 			<div class="site-description">Designer at Snøhetta</div>
 		</header>
+		{% endblock %}
 
 		<main id="content" role="main">
 			{% block content %}
