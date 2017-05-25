@@ -1,2 +1,2 @@
 # Index
-Personal website
+Index of projects, 2011–today.
