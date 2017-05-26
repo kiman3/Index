@@ -18,6 +18,7 @@ $grey2: #777;
 // Global measuements
 $padding-main: 1em;
 $line-height: 1.375em;
+$line-height-heading: 1.1em;
 
 // Responsive widths and mixin
 $width-s: 23em;
@@ -53,6 +54,29 @@ $width-xl: 105em;
 @mixin underline{
 	text-decoration: underline;
 	text-decoration-skip: ink;
+}
+
+// Add circle before element. Requires relative positioning for parent.
+@mixin preCircle{
+	background: #555;
+	backface-visibility: hidden;
+	border-radius: 50%;
+	content: "";
+	display: block;
+	height: 0.75em;
+	position: absolute;
+		top: 0.15em;
+		left: -1.125em;
+	transition: background 0.2s ease, transform .5s ease-in-out;
+	width: 0.75em;
+}
+
+@mixin tabFig{
+	font-feature-settings: "onum" 0, "lnum" 1, "tnum" 1;
+}
+
+@mixin propFig{
+	font-feature-settings: "onum" 0, "lnum" 1, "pnum" 1;
 }
 
 // Global styles
@@ -225,7 +249,7 @@ body{
 				background: #2c2c2c;
 				color: #999;
 				display: block;
-				font-feature-settings: "onum" 0, "lnum" 1;
+				@include propFig;
 				position: absolute;
 				z-index: 10;
 			}
@@ -277,28 +301,76 @@ body{
 					}
 
 	.entry-header{
-		mix-blend-mode: difference;
-		position: fixed;
+		line-height: 1.1;
 		width: 100%;
+
+		@include r(md){
+			mix-blend-mode: difference;
+			position: fixed;
+		}
 	}
 
+		.entry-typology{
+			color: $grey2;
+		}
+
+		.home-link{
+			display: inline-block;
+			position: relative;
+			text-decoration: none;
+
+			&:before{
+				@include preCircle;
+			}
+
+			&:after{
+				border-bottom: 1px solid #444;
+				content: "";
+				position: absolute;
+					bottom: 0;
+					left: 0;
+				transition: border-bottom-color 0.3s ease-in-out;
+				width: 100%;
+			}
+
+			&:hover{
+				&:before{
+					background: $white;
+					transform: translateX(-4px);
+				}
+
+				&:after{
+					border-bottom-color: currentColor;
+				}
+			}
+		}
+
+		.entry-position{
+			@include propFig;
+		}
+
 	.entry-article{
-		margin-top: $line-height*3;
+		margin-top: $line-height-heading*3;
 	}
 
 		.entry-article-header{
 			margin-bottom: $line-height;
 		}
 
-			.entry-title{
-				margin: 0;
-			}
-
 			.entry-desc{
 				font-family: $font2;
-				font-size: 2em;
+				font-size: 1.5em;
 				line-height: 1.25;
-				text-indent: 1em;
+				text-indent: 2em;
+
+				@include r(md){
+					font-size: 2em;
+				}
+
+				@include r(lg){
+					font-size: 2.25em;
+					font-size: 2em;
+				}
 
 				&:first-of-type{
 					text-indent: 0;
@@ -306,23 +378,37 @@ body{
 			}
 
 			.entry-meta{
-				font-feature-settings: "onum" 0, "lnum" 1;
+				@include propFig;
 			}
 
-		.entry-article-content{
-			.row{
+				.entry-title{
+					margin: 0;
+					max-width: 16em;
+				}
+
+				.entry-time{
+					color: $grey2;
+				}
+
+		.entry-article-content{}
+
+			.entry-article-row{
 				align-items: flex-start;
-			}
-		}
-
-			.asset-meta{
-				color: $grey2;
-				font-feature-settings: "onum" 0, "lnum" 1;
-				font-size: 0.75em;
-				text-transform: uppercase;
+				margin-bottom: $line-height;
 			}
 
-			.entry-img{
-				height: auto !important;
-				width: 100%;
-			}
+				.asset-meta{
+					color: $grey2;
+					@include tabFig;
+					font-size: 0.75em;
+				}
+
+				.entry-img{
+					float: left;
+					width: 100%;
+				}
+
+				.entry-text{
+					font-family: $font2;
+					font-size: 1.5em;
+				}

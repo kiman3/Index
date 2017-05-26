@@ -14,20 +14,33 @@
  #}
 
 {% extends "_layout" %}
+{% set title = entry.title %}
 
 {% block header %}
 <header id="header" class="header-main entry-header row">
-	<div class="col-md-4">
+	<div class="col-xs-12 col-md-4">
 		<h2 class="site-title">{{ siteName }}</h2>
-		<div class="site-description">Designer at Snøhetta</div>
+		<p class="site-description">Designer at Snøhetta</p>
 	</div>
-	<div class="col-md-3">
-		<h1 class="entry-title">{{ entry.title }}</h1>
-		<p>{{ entry.typology }}</p>
+	<div class="col-xs-12 col-md-3">
+		<p class="entry-position">
+			{% set entryIds = craft.entries.section('projects').order('postDate asc').ids() %}
+
+			{# Get the position of this entry's ID within our IDs array #}
+			{% set position = '' %}
+			{% for key, value in entryIds if value == entry.id %}
+			    {% set position = key + 1 %}
+			{% endfor %}
+
+			{# Get the amount of total entries #}
+			{% set total = entryIds|length %}
+
+			Project {{ position }}/{{ total }}
+		</p>
+		<p class="entry-typology">{{ entry.typology }}</p>
 	</div>
-	<div class="col-md-3">
-		<div><a href="/">Back to index</a></div>
-		<div>1/11</div>
+	<div class="col-xs-12 col-md-3">
+		<a href="/" class="home-link" rel="home">Back to index</a>
 	</div>
 </header>
 {% endblock %}
@@ -37,29 +50,45 @@
 		<header class="entry-article-header row">
 			<div class="col-md-3">
 				<div class="entry-meta">
-					<p>2011–2012</p>
+					<h1 class="entry-title">{{ entry.title }}</h1>
+					<p class="entry-time">2011–2012</p>
 				</div>
 			</div>
 			<div class="col-md-8 col-md-offset-1">
-				<!-- <p class="entry-date">Posted on {{ entry.postDate.format('F d, Y') }}</p> -->
 				<p class="entry-desc">A magazine being responsive beyond screens.</p>
-				<p class="entry-desc">The web format is challenged by exploring the void between analog and digital media, expressed as a flexible design that responds to the screen resolution – and to print. Through interviews with leading design studios, the content informed the design process. Reformat aims to change the existing mindset by proving that print today often is one of many states of digital&nbsp;objects.</p>
+				<p class="entry-desc">The magazine format is challenged by exploring the unconquered space between analog and digital media, expressed as a flexible design that responds to the screen resolution – and to print. Through interviews with leading design studios, the content informed the design process. Reformat aims to change the existing mindset by proving that print can be one of many possible states of digital&nbsp;objects.</p>
 			</div>
 		</header>
 		<div class="entry-article-content">
 		{% for block in entry.projectContent %}
 
 			{% if block.type == "rowImage" %}
-			<div class="entry-article-image row">
+			<div class="entry-article-image entry-article-row row">
 				{% set asset = block.projectImage.first() %}
 				{% if asset %}
 					<div class="col-md-1">
-						<div class="asset-meta">{{ asset.extension }}<br>{{ ceil(asset.size/1000) }} kB</div>
+						<div class="asset-meta">
+							<div class="asset-ext">{{ asset.extension|upper }}</div>
+							<div class="asset-size">{{ ceil(asset.size/1000) }} kB</div>
+							<div class="asset-indice">Item {{ loop.index }}</div>
+						</div>
 					</div>
 					<div class="col-md-{{ block.imageWidth }} col-md-offset-{{ block.imageOffset }}">
 						<img src="{{ asset.getUrl }}" alt="Project image" class="entry-img">
 					</div>
 				{% endif %}
+			</div>
+			{% elseif block.type == "rowText" %}
+			<div class="entry-article-text entry-article-row row">
+				<div class="col-md-1">
+					<div class="asset-meta">
+						<div class="asset-chars">{{ block.projectText|length }} chars</div>
+						<div class="asset-indice">Item {{ loop.index }}</div>
+					</div>
+				</div>
+				<div class="col-md-{{ block.textWidth }} col-md-offset-{{ block.textOffset }}">
+					<p class="entry-text">{{ block.projectText }}</p>
+				</div>
 			</div>
 			{% endif %}
 
