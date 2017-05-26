@@ -7,3 +7,4 @@
 *.sublime-project
 *.sublime-workspace
 style.css.map
+/assets/css/fonts/*
