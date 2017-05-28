@@ -5,9 +5,10 @@
 	<title>{% if title is defined %}{{ title }} — {% endif %}{{ siteName }}</title>
 	<link rel="home" href="{{ siteUrl }}" />
 	<link rel="stylesheet" href="{{ siteUrl }}assets/css/style.css" />
+	<link rel="shortcut icon" href="{{ siteUrl }}assets/img/favicon.ico" />
 </head>
 
-<body>
+<body {% if bodytag is defined %}id="{{ bodytag }}"{% endif %}>
 	<div id="container" class="container-fluid">
 		{% block header %}
 		<header id="header" class="header-main">
@@ -26,6 +27,6 @@
 		{% endblock %}
 	</div>
 	<script src="assets/js/vendor-min.js"></script>
-	<script src="assets/js/site-min.js"></script>
+	<script src="assets/js/site.js"></script>
 </body>
 </html>

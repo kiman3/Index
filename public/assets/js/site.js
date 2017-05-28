@@ -7,15 +7,19 @@
 	function smoothScroll() {
 		$('a[href*="#"]:not([href="#"])').on('click', function() {
 			page.on("scroll mousedown wheel DOMMouseScroll mousewheel keyup touchmove", function(){
-				page.stop();
+				page.velocity("stop");
 			});
 			if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
 				var target = $(this.hash);
 				target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
 				if (target.length) {
 					$(page).animate({
-						scrollTop: target.offset().top-32
+						scrollTop: target.offset().top
 					}, 1400, '', function(){});
+					$(page).velocity("scroll", {
+						offset: target.offset().top,
+						duration: 1400
+					});
 					return false;
 				}
 			}
@@ -23,15 +27,34 @@
 	}
 	smoothScroll();
 
+	// Top scroll btn visiblity
+	var scrollTopBtn = $('.scroll-top');
+	$(scrollTopBtn).hide();
+	function scrollBtn(){
+		var isOnTop = true;
+		$(window).scroll(function(){
+			var isCurrentOnTop = $(window).scrollTop()===0;
+			if(isOnTop == isCurrentOnTop) //scroll has changed but we only care when has changed from or to 0
+				return;
+			isOnTop = isCurrentOnTop;
+			var effect = isOnTop? "fadeOut": "fadeIn";
+			$('.scroll-top').velocity("finish").velocity(effect, { delay: 500, duration: 1500 });
+		});
+	}
+	scrollBtn();
+
 	// Top scroll
 	function topScroll(){
 		$('.scroll-top').on('click', function(){
 			page.on("scroll mousedown wheel DOMMouseScroll mousewheel keyup touchmove", function(){
-				page.stop();
+				page.velocity("stop");
 			});
-			$(page).stop().animate({
-				scrollTop: 0
-			}, 1600, '', function(){});
+			$(page).stop().velocity("scroll",
+			{
+				duration: 1500,
+				offset: 0,
+				mobileHA: false
+			});
 			return false;
 		});
 	}
@@ -75,26 +98,20 @@
 			onStart: {
 				duration: 500,
 				render: function ( $container ) {
-					$container.addClass( 'slide-out' )
+					$container.addClass( 'fade-out' )
 				}
 			},
 			onAfter: function( $container, $newContent ) {
-				colorBtn(),
-				backBtn(),
-				invert(),
-				inView(),
-				unInvert(),
-				menuNav(),
+				responsiveVideos(),
+				scrollBtn(),
 				smoothScroll(),
 				topScroll(),
-				videoInsert(),
-				responsiveVideos(),
-				$container.removeClass( 'slide-out' );
+				$container.removeClass( 'fade-out' );
 			},
 			prefetch: true
 		};
 
-		$('#page').smoothState( settings );
+		$('#container').smoothState( settings );
 	});
 
 })(jQuery);
