@@ -1,18 +1,3 @@
-{#
- # News entry template
- # -------------------
- #
- # This template gets loaded whenever a News entry’s URL is
- # requested. That’s because the News section’s Template setting is
- # set to “news/_entry”, the path to this template.
- #
- # When this template is loaded, it will already have an ‘entry’
- # variable, set to the requested News entry.
- #
- # See this page for more details on how Craft routes requests:
- # http://craftcms.com/docs/routing
- #}
-
 {% extends "_layout" %}
 {% set title = entry.title %}
 
@@ -51,12 +36,13 @@
 			<div class="col-md-3">
 				<div class="entry-meta">
 					<h1 class="entry-title">{{ entry.title }}</h1>
-					<p class="entry-time">2011–2012</p>
+					<p class="entry-time">{{ entry.timePeriod }}</p>
 				</div>
 			</div>
-			<div class="col-md-8 col-md-offset-1">
-				<p class="entry-desc">A magazine being responsive beyond screens.</p>
-				<p class="entry-desc">The magazine format is challenged by exploring the unconquered space between analog and digital media, expressed as a flexible design that responds to the screen resolution – and to print. Through interviews with leading design studios, the content informed the design process. Reformat aims to change the existing mindset by proving that print can be one of many possible states of digital&nbsp;objects.</p>
+			<div class="col-md-8">
+				<div class="entry-preamble">
+					{{ entry.preamble|widont }}
+				</div>
 			</div>
 		</header>
 		<div class="entry-article-content">
@@ -68,7 +54,7 @@
 				{% if asset %}
 					<div class="col-md-1">
 						<div class="asset-meta">
-							<div class="asset-ext">{{ asset.extension|upper }}</div>
+							<div class="asset-ext">Image/{{ asset.extension|upper }}</div>
 							<div class="asset-size">{{ ceil(asset.size/1000) }} kB</div>
 							<div class="asset-indice">Item {{ loop.index }}</div>
 						</div>
@@ -82,12 +68,28 @@
 			<div class="entry-article-text entry-article-row row">
 				<div class="col-md-1">
 					<div class="asset-meta">
-						<div class="asset-chars">{{ block.projectText|length }} chars</div>
+						<div class="asset-ext">Text</div>
+						<div class="asset-chars">{{ block.projectText|length }} characters</div>
 						<div class="asset-indice">Item {{ loop.index }}</div>
 					</div>
 				</div>
 				<div class="col-md-{{ block.textWidth }} col-md-offset-{{ block.textOffset }}">
-					<p class="entry-text">{{ block.projectText }}</p>
+					<p class="entry-text">{{ block.projectText|widont }}</p>
+				</div>
+			</div>
+			{% elseif block.type == "rowIframe" %}
+			<div class="entry-article-iframe entry-article-row row">
+				<div class="col-md-2">
+					<div class="asset-meta">
+						<div class="asset-ext">iFrame</div>
+						<div class="asset-chars"> {{ block.iframe }}</div>
+						<div class="asset-indice">Item {{ loop.index }}</div>
+					</div>
+				</div>
+				<div class="col-md-10">
+					<div class="entry-iframe-container">
+						<iframe src="{{ block.iframe }}" frameborder="0" class="entry-iframe"></iframe>
+					</div>
 				</div>
 			</div>
 			{% endif %}
@@ -95,4 +97,18 @@
 		{% endfor %}
 		</div>
 	</article>
+{% endblock %}
+
+{% block footer %}
+<footer class="footer-main row">
+	<div class="col-md-3">
+		<a href="#">About/contact</a>
+	</div>
+	<div class="col-md-2 col-md-offset-1 scroll-top-wrap">
+		<a href="#" class="scroll-top">Scroll up</a>
+	</div>
+	<div class="col-md-2 col-md-offset-3">
+		<a href="#">Twitter</a>
+	</div>
+</footer>
 {% endblock %}

@@ -18,7 +18,7 @@ $grey2: #777;
 // Global measuements
 $padding-main: 1em;
 $line-height: 1.375em;
-$line-height-heading: 1.1em;
+$line-height-heading: 1.15em;
 
 // Responsive widths and mixin
 $width-s: 23em;
@@ -121,7 +121,7 @@ body{
 
 	h1, h2, h3, h4, h5, h6{
 		font: inherit;
-		line-height: 1.1;
+		line-height: 1.15;
 		margin: 0;
 			margin-bottom: $line-height;
 	}
@@ -162,7 +162,9 @@ body{
 	}
 }
 
-	.header-main{}
+	.header-main{
+		line-height: 1.15;
+	}
 
 		.site-title{
 			margin-bottom: 0;
@@ -301,7 +303,6 @@ body{
 					}
 
 	.entry-header{
-		line-height: 1.1;
 		width: 100%;
 
 		@include r(md){
@@ -357,7 +358,7 @@ body{
 			margin-bottom: $line-height;
 		}
 
-			.entry-desc{
+			.entry-preamble{
 				font-family: $font2;
 				font-size: 1.5em;
 				line-height: 1.25;
@@ -372,8 +373,12 @@ body{
 					font-size: 2em;
 				}
 
-				&:first-of-type{
-					text-indent: 0;
+				p{
+					text-indent: 2em;
+
+					&:first-of-type{
+						text-indent: 0;
+					}
 				}
 			}
 
@@ -403,6 +408,10 @@ body{
 					font-size: 0.75em;
 				}
 
+				.asset-indice{
+					display: none;
+				}
+
 				.entry-img{
 					float: left;
 					width: 100%;
@@ -412,3 +421,32 @@ body{
 					font-family: $font2;
 					font-size: 1.5em;
 				}
+
+				.entry-iframe-container{
+					float: left;
+					height: 0;
+					padding-bottom: 75%;
+					position: relative;
+					width: 100%;
+				}
+
+					.entry-iframe{
+						height: 100%;
+						position: absolute;
+							top: 0;
+							left: 0;
+						width: 100%;
+					}
+
+	.footer-main{}
+
+		.scroll-top-wrap{
+			position: relative;
+		}
+
+			.scroll-top{
+				text-decoration: none;
+				mix-blend-mode: difference;
+				position: fixed;
+					bottom: 1.25em;
+			}
