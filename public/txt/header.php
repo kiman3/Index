@@ -7,6 +7,7 @@
 	<title><?php echo $title; ?></title>
 
 	<link rel="stylesheet" href="../assets/css/style.css" media="screen">
+	<link rel="shortcut icon" href="../assets/img/favicon-txt.ico" />
 </head>
 <body id="<?php echo $id; ?>">
 
