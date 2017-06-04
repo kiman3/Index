@@ -111,7 +111,7 @@
 			prefetch: true
 		};
 
-		$('#container').smoothState( settings );
+		// $('#container').smoothState( settings );
 	});
 
 })(jQuery);

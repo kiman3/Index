@@ -8,4 +8,5 @@
 *.sublime-workspace
 style.css.map
 public/assets/css/fonts/
+public/assets/css/fonts/*
 public/project
