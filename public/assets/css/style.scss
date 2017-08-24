@@ -155,11 +155,17 @@ body{
 	}
 
 #container{
+	min-height: 100vh;
 	padding: 2.5em;
-	transition: opacity 0.5s ease-in-out;
+	transition: opacity 0.5s ease-in-out 0.25s;
 
 	&.fade-out{
 		opacity: 0;
+	}
+
+	&.glitch{
+		filter: url('#filter-warp');
+		// opacity: 0;
 	}
 
 	@include r(md){
@@ -215,14 +221,42 @@ body{
 					position: absolute;
 					max-width: 20%;
 				}
+
+				&:hover{
+					.project-meta{
+						text-shadow: 0 0 10px rgba($white, 0.5);
+					}
+
+						.project-title{
+							color: $white;
+
+							&:after, &:before{
+								background: $white;
+							}
+						}
+
+						.project-typology{
+							color: #ddd;
+						}
+
+					.project-img{
+						opacity: 1;
+					}
+				}
 			}
 
-				.project-meta{}
+				.project-meta{
+					position: relative;
+					mix-blend-mode: difference;
+					z-index: 100;
+				}
 
 					.project-title{
-						line-height: 1.15;
+						display: inline;
+						line-height: 1.05;
 						margin: 0;
 						position: relative;
+						transition: color 0.3s ease-in-out;
 
 						@include r(m){
 							white-space: nowrap;
@@ -246,7 +280,24 @@ body{
 
 					.project-typology{
 						color: $grey2;
+						transition: color 0.3s ease-in-out;
 					}
+
+				.project-img{
+					opacity: 0;
+					pointer-events: none;
+					position: fixed;
+						top: 0;
+						left: 0;
+					transition: opacity 0.3s ease-in-out;
+					width: 35vmin;
+
+					img{
+						float: left;
+						transform: translate(-50%, -50%);
+						width: 100%;
+					}
+				}
 
 		.axis{
 			display: none;
@@ -267,7 +318,7 @@ body{
 				top: 0;
 				left: 50%;
 				text-align: center;
-				width: 1px;
+				width: 2px;
 			}
 
 				.y span{
@@ -287,7 +338,7 @@ body{
 					}
 
 			.x{
-				height: 1px;
+				height: 2px;
 				top: 50%;
 				left: 0;
 				width: 100%;
@@ -304,6 +355,8 @@ body{
 					}
 
 					.x-right{
+						background: $black;
+						padding-left: 0.75em;
 						right: -3em;
 					}
 

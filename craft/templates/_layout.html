@@ -26,6 +26,15 @@
 		{% block footer %}
 		{% endblock %}
 	</div>
+	<svg class="svg-filters" style="display: none;">
+		<defs>
+			<filter id="filter-warp">
+				<feTurbulence type="fractalNoise" id="noise" baseFrequency="0.003" numOctaves="2" result="warp" stitchTiles="stitch"></feTurbulence>
+				<feOffset dx="25.113487499999998" dy="-25.113487499999998" id="offset" result="warpOffset"></feOffset>
+				<feDisplacementMap xChannelSelector="R" yChannelSelector="G" scale="600" in="SourceGraphic" in2="warpOffset"></feDisplacementMap>
+			</filter>
+		</defs>
+	</svg>
 	<script src="assets/js/vendor-min.js"></script>
 	<script src="assets/js/site.js"></script>
 </body>
