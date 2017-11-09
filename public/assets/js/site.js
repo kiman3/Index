@@ -93,7 +93,7 @@
 	responsiveVideos();
 
 
-	// Configure and initialize smoothstate
+	// SmoothState
 	// Remember to initialize all relevant functions onAfter
 	$( function() {
 		var $body = $('body');
@@ -102,9 +102,9 @@
 			cacheLength: 4,
 			loadingClass: 'is-loading',
 			onStart: {
-				duration: 0,
+				duration: 800,
 				render: function ( $container ) {
-					$container.addClass('glitch');
+					$container.addClass('pfft');
 				}
 			},
 			onAfter: function( $container, $newContent ) {
@@ -112,7 +112,7 @@
 				scrollBtn(),
 				smoothScroll(),
 				topScroll(),
-				$container.removeClass('glitch');
+				$container.removeClass('pfft');
 			},
 			prefetch: true
 		};

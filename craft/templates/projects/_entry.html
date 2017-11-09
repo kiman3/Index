@@ -24,7 +24,7 @@
 			Project {{ position }} of {{ total }}
 		</p>
 	</div>
-	<div class="col-xs-12 col-md-4 col-md-offset-2">
+	<div class="col-xs-12 col-md-4">
 		<a href="/" class="home-link" rel="home">Back to index</a>
 	</div>
 </header>
@@ -33,14 +33,14 @@
 {% block content %}
 	<article class="entry-article">
 		<header class="entry-article-header row">
-			<div class="col-xs-12 col-md-2">
+			<div class="col-xs-12 col-md-4 col-md-offset-2">
 				<div class="entry-meta">
 					<h1 class="entry-title">{{ entry.title }}</h1>
 					<p class="entry-typology">{{ entry.typology }}</p>
 					<p class="entry-time">{{ entry.timePeriod }}</p>
 				</div>
 			</div>
-			<div class="col-xs-12 col-md-10">
+			<div class="col-xs-12 col-md-6">
 				<div class="entry-preamble">
 					{{ entry.preamble|widont }}
 				</div>
