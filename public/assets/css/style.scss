@@ -5,7 +5,6 @@
 
 // Font stacks
 $font: GT Cinetype, Helvetica, Arial, sans-serif;
-$font2: Times New Roman, Times, serif;
 
 // Main colors
 $black: #000000;
@@ -19,6 +18,8 @@ $grey2: #999;
 $padding-main: 1em;
 $line-height: 1.375em;
 $line-height-heading: 1.15em;
+$letter-spacing-body: -0.01em;
+$letter-spacing-large: -0.02em;
 
 // Responsive widths and mixin
 $width-s: 23em;
@@ -26,6 +27,7 @@ $width-sm: 48em;
 $width-md: 60em;
 $width-lg: 75em;
 $width-xl: 105em;
+$width-xxl: 120em;
  
 @mixin r($width){
 
@@ -47,6 +49,10 @@ $width-xl: 105em;
 
 	@else if $width == xl{
 		@media only screen and (min-width: $width-xl) { @content; }
+	}
+
+	@else if $width == xxl{
+		@media only screen and (min-width: $width-xxl) { @content; }
 	}
 }
 
@@ -91,15 +97,24 @@ html{}
 body{
 	background: $background;
 	color: $text;
-	font: 400 1em/1.375 $font;
+	font: 400 1em/1.3125 $font;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
+	letter-spacing: $letter-spacing-body;
 	margin: 0;
 	overflow-x: hidden;
 	text-rendering: optimizeLegibility;
 
+	@include r(md){
+		font-size: 0.9375em;
+	}
+
+	@include r(lg){
+		font-size: 1em;
+	}
+
 	@include r(xl){
-		font-size: 1.125em;
+		font-size: 1.0625em;
 	}
 }
 
@@ -150,35 +165,17 @@ body{
 	}
 
 	::selection{
-		background: #bbb;
-		color: inherit;
+		background: #fff;
+		color: #000;
 	}
 
 #container{
 	min-height: 100vh;
-	padding: 2.5em;
+	padding: 1em;
 
 	@include r(md){
 		padding: 1.25em;
 	}
-
-	// &:after{
-	// 	background: $background;
-	// 	content: "";
-	// 	height: 100%;
-	// 	opacity: 0;
-	// 	position: fixed;
-	// 		top: 0;
-	// 		left: 0;
-	// 	transform: translateY(100%);
-	// 	transition: transform 0.5s ease-out;
-	// 	width: 100%;
-	// 	z-index: 4000;
-	// }
-
-	// 	&.pfft:after{
-	// 		transform: translateY(0);
-	// 	}
 }
 
 	.header-main{
@@ -388,28 +385,27 @@ body{
 			text-decoration: none;
 
 			&:before{
-				@include preCircle;
+				border : {
+					top: 1px solid $text;
+					left: 1px solid $text;
+				}
+				content: "";
+				height: 10px;
+				position: absolute;
+					top: 4px;
+					left: -18px;
+				transform: rotate(-45deg);
+				width: 10px;
 			}
 
 			&:after{
-				border-bottom: 1px solid #444;
+				border-top: 1px solid $text;
 				content: "";
+				height: 1px;
 				position: absolute;
-					bottom: 0;
-					left: 0;
-				transition: border-bottom-color 0.3s ease-in-out;
-				width: 100%;
-			}
-
-			&:hover{
-				&:before{
-					background: $white;
-					transform: translateX(-4px);
-				}
-
-				&:after{
-					border-bottom-color: currentColor;
-				}
+					top: 8px;
+					left: -18px;
+				width: 12px;
 			}
 		}
 
@@ -417,17 +413,36 @@ body{
 			@include propFig;
 		}
 
+		.entry-time{
+			@include propFig;
+			color: $grey2;
+		}
+
 	.entry-article{
-		margin-top: $line-height-heading*3;
+		margin-top: $line-height-heading*5;
 	}
 
 		.entry-article-header{
 			margin-bottom: $line-height;
 		}
 
+			.entry-meta{
+				@include propFig;
+				font-size: 1.75em;
+				letter-spacing: $letter-spacing-large;
+				line-height: 1.3125;
+			}
+
+				.entry-title{
+					line-height: inherit;
+					margin: 0;
+					max-width: 16em;
+				}
+
 			.entry-preamble{
 				color: #ddd;
 				font-size: 1.75em;
+				letter-spacing: $letter-spacing-large;
 				line-height: 1.3125;
 				text-indent: 2em;
 
@@ -440,22 +455,6 @@ body{
 				}
 			}
 
-			.entry-meta{
-				@include propFig;
-				font-size: 1.75em;
-				line-height: 1.3125;
-			}
-
-				.entry-title{
-					line-height: inherit;
-					margin: 0;
-					max-width: 16em;
-				}
-
-				.entry-time{
-					color: $grey2;
-				}
-
 		.entry-article-content{}
 
 			.entry-article-row{
@@ -466,12 +465,11 @@ body{
 				.asset-meta{
 					color: $grey2;
 					@include tabFig;
-					font-size: 0.75em;
 				}
 
-				.asset-indice{
-					display: none;
-				}
+					.asset-indice{
+						display: none;
+					}
 
 				.entry-img{
 					float: left;
@@ -479,8 +477,7 @@ body{
 				}
 
 				.entry-text{
-					font-family: $font2;
-					font-size: 1.5em;
+					font-size: 1.75em;
 				}
 
 				.entry-iframe-container{

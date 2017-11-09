@@ -6,23 +6,21 @@
 <header id="header" class="header-main entry-header row">
 	<div class="col-xs-12 col-md-2">
 		<h2 class="site-title">{{ siteName }}</h2>
-		<p class="site-description">Designer at Snøhetta</p>
+		<p class="site-description">{{ siteInformation.siteDescription }}</p>
 	</div>
 	<div class="col-xs-12 col-md-4">
 		<p class="entry-position">
 			{% set entryIds = craft.entries.section('projects').order('postDate asc').ids() %}
-
 			{# Get the position of this entry's ID within our IDs array #}
 			{% set position = '' %}
 			{% for key, value in entryIds if value == entry.id %}
 			    {% set position = key + 1 %}
 			{% endfor %}
-
 			{# Get the amount of total entries #}
 			{% set total = entryIds|length %}
-
 			Project {{ position }} of {{ total }}
 		</p>
+		<p class="entry-time">{{ entry.timePeriod }}</p>
 	</div>
 	<div class="col-xs-12 col-md-4">
 		<a href="/" class="home-link" rel="home">Back to index</a>
@@ -37,7 +35,7 @@
 				<div class="entry-meta">
 					<h1 class="entry-title">{{ entry.title }}</h1>
 					<p class="entry-typology">{{ entry.typology }}</p>
-					<p class="entry-time">{{ entry.timePeriod }}</p>
+					
 				</div>
 			</div>
 			<div class="col-xs-12 col-md-6">
