@@ -21,7 +21,7 @@
 			{# Get the amount of total entries #}
 			{% set total = entryIds|length %}
 
-			Project {{ position }}/{{ total }}
+			Project {{ position }} of {{ total }}
 		</p>
 	</div>
 	<div class="col-xs-12 col-md-3">
@@ -33,14 +33,14 @@
 {% block content %}
 	<article class="entry-article">
 		<header class="entry-article-header row">
-			<div class="col-xs-12 col-md-3">
+			<div class="col-xs-12 col-md-12">
 				<div class="entry-meta">
 					<h1 class="entry-title">{{ entry.title }}</h1>
 					<p class="entry-typology">{{ entry.typology }}</p>
 					<p class="entry-time">{{ entry.timePeriod }}</p>
 				</div>
 			</div>
-			<div class="col-xs-12 col-md-8">
+			<div class="col-xs-12 col-md-12">
 				<div class="entry-preamble">
 					{{ entry.preamble|widont }}
 				</div>

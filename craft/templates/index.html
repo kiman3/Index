@@ -10,22 +10,23 @@
 					<div class="project-typology">{{ entry.typology }}</div>
 				</div>
 				{% if entry.projectThumbs | length %}
-				    {% for asset in entry.projectThumbs %}
-				    	<div class="project-img">
+					{% for asset in entry.projectThumbs %}
+						<div class="project-img">
 							<img src="{{ asset.getUrl('thumbnail') }}">
 						</div>
-				    {% endfor %}
+					{% endfor %}
 				{% endif %}
 			</a>
 		{% endfor %}
 		</div>
 		<div class="axis x">
-			<span class="x-left">{{ siteInformation.xAxis1 }}</span>
-			<span class="x-right">{{ siteInformation.xAxis2 }}</span>
+			<span class="x-left">{{ axisLabels.xAxis1 }}</span>
+			<span class="x-right">{{ axisLabels.xAxis2 }}</span>
 		</div>
 		<div class="axis y">
-			<span class="y-top">{{ siteInformation.yAxis1 }}</span>
-			<span class="y-bottom">{{ siteInformation.yAxis2 }}</span>
+			<span class="y-top">{{ axisLabels.yAxis1 }}</span>
+			<span class="y-bottom">{{ axisLabels.yAxis2 }}</span>
 		</div>
 	</div>
+	<canvas id="c"></canvas>
 {% endblock %}
