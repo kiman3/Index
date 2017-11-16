@@ -21,21 +21,34 @@
 {% block content %}
 <div class="archived-projects row">
 	<div class="col-xs-12 col-md-9 col-md-offset-3">
-		<p class="archived-project-title">Title</p>
-		<p class="archived-project-client">Client</p>
-		<p class="archived-project-typology">Typology</p>
+		<div class="archived-projects-labels">
+			<button class="archive-sort-btn archived-project-title-time sort-orig" data-sort-value="title">Title</button>
+			<button class="archive-sort-btn archived-project-client sort-orig" data-sort-value="client">Client</button>
+			<button class="archive-sort-btn archived-project-typology sort-orig" data-sort-value="typology">Typology</button>
+			<button class="archive-sort-btn archived-project-timeframe sort-orig" data-sort-value="year">Year</button>
+		</div>
 	</div>
 	<div class="col-xs-12 col-md-9 col-md-offset-3">
-	{% for block in entry.archivedProjects %}
-		<div class="archived-project">
-		{% if block.type == "archivedProject" %}
-			<h3 class="archived-project-title">{{ block.archivedTitle }}</h3>
-			<p class="archived-project-client">{{ block.archivedClient }}</p>
-			<p class="archived-project-typology">{{ block.archivedTypology }}</p>
-			<p class="archived-project-timeframe">{{ block.archivedTimeframe }}</p>
-		{% endif %}
+		<div class="archived-projects-wrap">
+			{% for block in entry.archivedProjects %}
+				<div class="archived-project">
+				{% if block.type == "archivedProject" %}
+					<div class="archived-project-title-time">
+						<h3 class="archived-project-title">{{ block.archivedTitle }}</h3>
+					</div>
+					<div class="archived-project-client">{{ block.archivedClient }}</div>
+					<div class="archived-project-typology">{{ block.archivedTypology }}</div>
+					<time class="archived-project-timeframe">{{ block.archivedTimeframe }}</time>
+					{% set image = block.archivedThumbnail.first() %}
+					{% if image %}
+						<div class="archived-project-thumbnail">
+							<img src="{{ image.getUrl('thumbnail') }}" width="{{ image.getWidth('thumbnail') }}" height="{{ image.getHeight('thumbnail') }}" alt="{{ image.title }}">
+						</div>
+					{% endif %}
+				{% endif %}
+				</div>
+			{% endfor %}
 		</div>
-	{% endfor %}
 	</div>
 </div>
 {% endblock %}

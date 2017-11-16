@@ -544,44 +544,97 @@ body{
 		margin-top: $line-height*5;
 	}
 
+		.archived-projects-labels{
+			color: $grey2;
+			display: flex;
+				flex-wrap: wrap;
+			padding-bottom: $line-height/2;
+		}
+
+			.archive-sort-btn{
+				appearance: none;
+				background: none;
+				border: none;
+				border-radius: 0;
+				color: inherit;
+				cursor: pointer;
+				font: inherit;
+				margin: 0;
+				padding: 0;
+				outline: none;
+				text-align: left;
+				transition: color 0.3s ease-in-out;
+
+				&:hover{
+					color: $text;
+				}
+			}
+
 		.archived-project{
 			border-top: 1px solid $grey1;
+			display: flex;
+				flex-wrap: wrap;
 			padding: 0.5em 0;
+			position: relative;
 			width: 100%;
 
 			&:last-of-type{
 				border-bottom: 1px solid $grey1;
 			}
+
+			&:hover{
+				.archived-project-thumbnail{
+					opacity: 1;
+				}
+			}
 		}
 
-			.archived-project-title{
-				float: left;
+			.archived-project-title-time, .archived-project-client, .archived-project-typology{
 				width: 100%;
 
 				@include r(md){
+					padding-left: 1rem;
 					width: 33.3333%;
+
+					&:first-of-type{
+						padding-left: 0;
+					}
 				}
 			}
 
-			.archived-project-client{
-				color: $grey2;
-				float: left;
-				width: 100%;
+				.archived-project-title{}
 
-				@include r(md){
-					padding-left: 0.75rem;
-					width: 33.3333%;
+				.archived-project-client{}
+
+				.archived-project-typology{
+					@include r(md){
+						padding-left: 1rem;
+						width: 22%;
+					}
 				}
-			}
 
-			.archived-project-typology{
-				float: left;
-				width: 100%;
+				.archived-project-timeframe{
+					@include propFig;
 
-				@include r(md){
-					padding-left: 0.75rem;
-					width: 33.3333%;
+					@include r(md){
+						padding-left: 1rem;
+						width: 11.3333%;
+					}
 				}
-			}
 
-			.archived-project-timeframe{}
+				.archived-project-thumbnail{
+					backface-visibility: hidden;
+					opacity: 0;
+					pointer-events: none;
+					position: absolute;
+						top: 0.6em;
+						left: -1rem;
+					transform: translateX(-100%);
+					transition: opacity 0.3s ease-in-out;
+					width: calc(25vw - 1.25rem);
+
+					img{
+						float: left;
+						width: 100%;
+					}
+				}

@@ -1,1 +1,1 @@
-// @codekit-prepend "jquery-3.2.0.min.js", "jquery.smoothState.min.js", "velocity.min.js";
+// @codekit-prepend "jquery-3.2.0.min.js", "jquery.smoothState.min.js", "velocity.min.js", "isotope.pkgd.min.js";
