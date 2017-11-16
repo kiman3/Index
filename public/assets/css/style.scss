@@ -138,7 +138,6 @@ body{
 		font: inherit;
 		line-height: 1.15;
 		margin: 0;
-			margin-bottom: $line-height;
 	}
 
 	hr{
@@ -180,6 +179,8 @@ body{
 
 	.header-main{
 		line-height: 1.15;
+		position: relative;
+		z-index: 200;
 	}
 
 		.site-title{
@@ -189,6 +190,41 @@ body{
 		.site-description{
 			color: $grey2;
 		}
+
+		.nav-main{
+			margin-top: $line-height;
+		}
+
+			.nav-link{
+				text-decoration: none;
+			}
+
+	.footer-main{}
+
+	.scroll-top-wrap{
+		position: relative;
+	}
+
+		.scroll-top{
+			text-decoration: none;
+			mix-blend-mode: difference;
+			position: fixed;
+				bottom: 1.25em;
+		}
+
+	#c{
+		height: 100%;
+		pointer-events: none;
+		position: fixed;
+			top: 0;
+			left: 0;
+		opacity: 0;
+		width: 100%;
+		z-index: -1;
+	}
+
+
+	// Index
 
 	#coordinates{
 		padding: $padding-main;
@@ -251,14 +287,15 @@ body{
 			}
 
 				.project-meta{
+					line-height: 1.25;
 					position: relative;
 					mix-blend-mode: difference;
 					z-index: 100;
 				}
 
 					.project-title{
-						display: inline;
-						line-height: 1.05;
+						display: inline-block;
+						line-height: inherit;
 						margin: 0;
 						position: relative;
 						transition: color 0.3s ease-in-out;
@@ -365,6 +402,9 @@ body{
 						right: -3em;
 					}
 
+
+	// Entries
+
 	.entry-header{
 		width: 100%;
 
@@ -420,6 +460,7 @@ body{
 
 	.entry-article{
 		margin-top: $line-height-heading*5;
+		min-height: 100vh;
 	}
 
 		.entry-article-header{
@@ -496,26 +537,51 @@ body{
 						width: 100%;
 					}
 
-	.footer-main{}
 
-		.scroll-top-wrap{
-			position: relative;
+	// Archive
+
+	.archived-projects{
+		margin-top: $line-height*5;
+	}
+
+		.archived-project{
+			border-top: 1px solid $grey1;
+			padding: 0.5em 0;
+			width: 100%;
+
+			&:last-of-type{
+				border-bottom: 1px solid $grey1;
+			}
 		}
 
-			.scroll-top{
-				text-decoration: none;
-				mix-blend-mode: difference;
-				position: fixed;
-					bottom: 1.25em;
+			.archived-project-title{
+				float: left;
+				width: 100%;
+
+				@include r(md){
+					width: 33.3333%;
+				}
 			}
 
-	#c{
-		height: 100%;
-		pointer-events: none;
-		position: fixed;
-			top: 0;
-			left: 0;
-		opacity: 0;
-		width: 100%;
-		z-index: -1;
-	}
+			.archived-project-client{
+				color: $grey2;
+				float: left;
+				width: 100%;
+
+				@include r(md){
+					padding-left: 0.75rem;
+					width: 33.3333%;
+				}
+			}
+
+			.archived-project-typology{
+				float: left;
+				width: 100%;
+
+				@include r(md){
+					padding-left: 0.75rem;
+					width: 33.3333%;
+				}
+			}
+
+			.archived-project-timeframe{}

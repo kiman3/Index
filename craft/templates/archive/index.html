@@ -1,0 +1,41 @@
+{# Archive index #}
+{% extends "_layout" %}
+{% set title = entry.title %}
+{% set bodytag = "archive" %}
+
+{% block header %}
+<header id="header" class="header-main entry-header row">
+	<div class="col-xs-12 col-md-3">
+		<p class="site-title">{{ siteName }}</p>
+		<p class="site-description">{{ siteInformation.siteDescription }}</p>
+	</div>
+	<div class="col-xs-12 col-md-3">
+		<p>A (non-exhaustive) project archive</p>
+	</div>
+	<div class="col-xs-12 col-md-3">
+		<a href="/" class="home-link" rel="home">Back to index</a>
+	</div>
+</header>
+{% endblock %}
+
+{% block content %}
+<div class="archived-projects row">
+	<div class="col-xs-12 col-md-9 col-md-offset-3">
+		<p class="archived-project-title">Title</p>
+		<p class="archived-project-client">Client</p>
+		<p class="archived-project-typology">Typology</p>
+	</div>
+	<div class="col-xs-12 col-md-9 col-md-offset-3">
+	{% for block in entry.archivedProjects %}
+		<div class="archived-project">
+		{% if block.type == "archivedProject" %}
+			<h3 class="archived-project-title">{{ block.archivedTitle }}</h3>
+			<p class="archived-project-client">{{ block.archivedClient }}</p>
+			<p class="archived-project-typology">{{ block.archivedTypology }}</p>
+			<p class="archived-project-timeframe">{{ block.archivedTimeframe }}</p>
+		{% endif %}
+		</div>
+	{% endfor %}
+	</div>
+</div>
+{% endblock %}
