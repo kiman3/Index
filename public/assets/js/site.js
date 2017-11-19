@@ -32,6 +32,14 @@
 	}
 	sorting();
 
+	function hover(hover){
+		$(hover).hover(function(){
+			$(hover).not(this).addClass('hover-out');
+		}, function(){
+			$(hover).removeClass('hover-out');
+		});
+	}
+	hover('.archived-project');
 
 	// Smooth scroll
 	var page = $('html, body');
@@ -142,6 +150,7 @@
 			},
 			onAfter: function( $container, $newContent ) {
 				responsiveVideos(),
+				hover('.archived-project'),
 				scrollBtn(),
 				sorting(),
 				smoothScroll(),

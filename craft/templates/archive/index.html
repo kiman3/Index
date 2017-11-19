@@ -6,8 +6,10 @@
 {% block header %}
 <header id="header" class="header-main entry-header row">
 	<div class="col-xs-12 col-md-3">
-		<p class="site-title">{{ siteName }}</p>
-		<p class="site-description">{{ siteInformation.siteDescription }}</p>
+		<a href="/" class="title-home-link">
+			<p class="site-title">{{ siteName }}</p>
+			<p class="site-description">{{ siteInformation.siteDescription }}</p>
+		</a>
 	</div>
 	<div class="col-xs-12 col-md-3">
 		<p>A (non-exhaustive) project archive</p>
