@@ -56,15 +56,15 @@
 			<div class="entry-article-image entry-article-row row">
 				{% set asset = block.projectImage.first() %}
 				{% if asset %}
+					<div class="col-xs-12">
+						<img src="{{ asset.getUrl }}" alt="Project image" class="entry-img">
+					</div>
 					<div class="col-xs-12 col-md-3">
 						<div class="asset-meta">
 							<div class="asset-ext">Image/{{ asset.extension|upper }}</div>
 							<div class="asset-size">{{ ceil(asset.size/1000) }} kB</div>
 							<div class="asset-indice">Item {{ loop.index }}</div>
 						</div>
-					</div>
-					<div class="col-xs-12 col-md-{{ block.imageWidth }} col-md-offset-{{ block.imageOffset }}">
-						<img src="{{ asset.getUrl }}" alt="Project image" class="entry-img">
 					</div>
 				{% endif %}
 			</div>
