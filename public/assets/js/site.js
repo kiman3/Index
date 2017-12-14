@@ -101,11 +101,43 @@
 	}
 	topScroll();
 
-	$(document).on('mousemove', function(e){
-		$('.project-img').css({
-			'transform' : 'translate(' + e.clientX + 'px ,' + e.clientY + 'px)'
+	// Find window size, define variables
+	function windowSize() {
+		windowHeight = window.innerHeight ? window.innerHeight : $(window).height();
+		windowWidth = window.innerWidth ? window.innerWidth : $(window).width();
+	}
+	windowSize();
+
+	// Project img mousemove
+	function projectImgMouseMoveInit(){
+		function projectImgMouseMove(){
+			var projectImg = $('.project-img');
+			projectImg.addClass('moveable');
+			$(document).on('mousemove', function(e){
+				$('.moveable').css({
+					'transform' : 'translate(' + e.clientX + 'px ,' + e.clientY + 'px)'
+				});
+			});
+		}
+		if (windowWidth >= 960) {
+			projectImgMouseMove();
+		}
+
+		$(window).resize(function() {
+			windowSize();
+
+			var projectImg = $('.project-img');
+			if (windowWidth >= 960) {
+				projectImgMouseMove();
+			} else{
+				$(projectImg).css({
+					'transform' : 'translate(0, 0)'
+				})
+				$(projectImg).removeClass('moveable');
+			}
 		});
-	});
+	}
+	projectImgMouseMoveInit();
 
 	// Responsive videos (YouTube and Vimeo embeds)
 	function responsiveVideos(){
@@ -151,10 +183,12 @@
 			onAfter: function( $container, $newContent ) {
 				responsiveVideos(),
 				hover('.archived-project'),
+				projectImgMouseMoveInit(),
 				scrollBtn(),
 				sorting(),
 				smoothScroll(),
 				topScroll(),
+				windowSize(),
 				$container.removeClass('pfft');
 			},
 			prefetch: true

@@ -188,6 +188,7 @@ body{
 	}
 
 	.header-main{
+		float: left;
 		line-height: 1.15;
 		position: relative;
 		z-index: 200;
@@ -195,11 +196,19 @@ body{
 
 		.site-title{
 			margin-bottom: 0;
+			
+			@include r(md){
+				margin-left: -1px; // Compensate text to align with images in grid
+			}
 		}
 
 		.site-description{
 			color: $grey2;
 			transition: color 0.3s ease-in-out;
+
+			@include r(md){
+				margin-left: -1px; // Compensate text to align with images in grid
+			}
 		}
 
 		.nav-main{
@@ -217,6 +226,12 @@ body{
 
 					&:hover{
 						color: $white;
+					}
+
+					&.nav-link-projects{
+						@include r(md){
+							display: none;
+						}
 					}
 				}
 
@@ -248,25 +263,29 @@ body{
 	// Index
 
 	#coordinates{
+		margin-top: calc(100vh - 1.375em - 6em - 5.5em);
+		margin-bottom: $line-height*2;
 		padding: $padding-main;
-			padding-top: 5em;
+		position: absolute;
+			top: 0;
+			left: $padding-main*2.4;
+		width: calc(100% - 3em);
 
 		@include r(md){
 			border: 3em solid transparent;
 				border-right-width: 4.2em;
 				border-left-width: 4em;
-			float: left;
 			height: 100%;
+			left: 0;
+			margin: 0;
 			padding: 0;
-			position: absolute;
-				top: 0;
-				left: 0;
 			width: 100%;
 		}
 	}
 
 		.projects{
-			
+			position: relative;
+			z-index: 100;
 
 			@include r(md){
 				height: 100%;
@@ -274,20 +293,23 @@ body{
 					top: 0;
 					left: 0;
 				width: 100%;
-				z-index: 100;
 			}
 		}
 
 			.project{
 				display: block;
-				margin-bottom: $line-height;
+				float: left;
+				margin-bottom: $line-height*3;
 				text-decoration: none;
+				width: 100%;
 
 				@include r(md){
+					float: none;
 					margin-top: -0.5em;
 					margin-bottom: 0;
 					position: absolute;
 					max-width: 20%;
+					width: auto;
 				}
 
 				&:hover{
@@ -353,41 +375,51 @@ body{
 					}
 
 				.project-img{
-					opacity: 0;
-					pointer-events: none;
-					position: fixed;
-						top: 0;
-						left: 0;
-					transition: opacity 0.3s ease-in-out;
-					width: 35vmin;
+					margin-top: $line-height;
+					width: 100%;
 
 					img{
 						float: left;
-						transform: translate(-50%, -50%);
-						width: 100%;
+						width: 80%;
+					}
+
+					@include r(md){
+						margin-top: 0;
+						opacity: 0;
+						pointer-events: none;
+						position: fixed;
+							top: 0;
+							left: 0;
+						transition: opacity 0.3s ease-in-out;
+						width: 35vmin;
+
+						img{
+							transform: translate(-50%, -50%);
+							width: 100%;
+						}
 					}
 				}
 
 		.axis{
-			display: none;
+			background: #2c2c2c;
+			color: #999;
+			@include propFig;
 			line-height: 1;
-
-			@include r(md){
-				background: #2c2c2c;
-				color: #999;
-				display: block;
-				@include propFig;
-				position: absolute;
-				z-index: 10;
-			}
+			position: absolute;
+			z-index: 10;
 		}
 
 			.y{
+				display: none;
 				height: 100%;
 				top: 0;
 				left: 50%;
 				text-align: center;
 				width: 1px;
+
+				@include r(md){
+					display: block;
+				}
 			}
 
 				.y span{
@@ -407,32 +439,56 @@ body{
 					}
 
 			.x{
-				height: 1px;
-				top: 50%;
-				left: 0;
-				width: 100%;
+				height: 100%;
+				top: 0;
+				left: 1px;
+				width: 1px;
+
+				@include r(md){
+					height: 1px;
+					top: 50%;
+					left: 0;
+					width: 100%;
+				}
 			}
 
 				.x span{
 					height: 1em;
 					position: absolute;
+					z-index: 20;
+						
+					@include r(md){
 						top: -0.5em;
+					}
 				}
 
 					.x-left{
-						left: -2.75em;
+						left: -1em;
+						bottom: -$line-height;
+
+						@include r(md){
+							left: -2.75em;
+						}
 					}
 
 					.x-right{
-						background: $black;
-						padding-left: 0.75em;
-						right: -3em;
+						top: -$line-height;
+						left: -1.65em;
+
+						@include r(md){
+							background: $black;
+							padding-left: 0.75em;
+							top: auto;
+							right: -3em;
+							left: auto;
+						}
 					}
 
 
 	// Entries
 
 	.entry-header{
+		float: none;
 		width: 100%;
 
 		@include r(md){
@@ -478,6 +534,11 @@ body{
 
 		.entry-position{
 			@include propFig;
+			margin-top: $line-height;
+
+			@include r(md){
+				margin-top: 0;
+			}
 		}
 
 		.entry-time{
@@ -486,8 +547,12 @@ body{
 		}
 
 	.entry-article{
-		margin-top: $line-height-heading*5;
+		margin-top: $line-height*2;
 		min-height: 100vh;
+
+		@include r(md){
+			margin-top: $line-height-heading*5;
+		}
 	}
 
 		.entry-article-header{
@@ -496,9 +561,15 @@ body{
 
 			.entry-meta{
 				@include propFig;
-				font-size: 1.75em;
+				font-size: 1.25em;
 				letter-spacing: $letter-spacing-large;
 				line-height: 1.3125;
+				margin-bottom: $line-height;
+
+				@include r(md){
+					font-size: 1.75em;
+					margin-bottom: 0;
+				}
 			}
 
 				.entry-title{
@@ -509,10 +580,14 @@ body{
 
 			.entry-preamble{
 				color: #ddd;
-				font-size: 1.75em;
+				font-size: 1.25em;
 				letter-spacing: $letter-spacing-large;
 				line-height: 1.3125;
 				text-indent: 2em;
+
+				@include r(md){
+					font-size: 1.75em;
+				}
 
 				p{
 					text-indent: 2em;
