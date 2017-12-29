@@ -97,7 +97,7 @@ html{}
 body{
 	background: $background;
 	color: $text;
-	font: 400 1em/1.3125 $font;
+	font: 400 0.9375em/1.3125 $font;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
 	letter-spacing: $letter-spacing-body;
@@ -105,16 +105,8 @@ body{
 	overflow-x: hidden;
 	text-rendering: optimizeLegibility;
 
-	@include r(md){
-		font-size: 0.9375em;
-	}
-
-	@include r(lg){
-		font-size: 1em;
-	}
-
 	@include r(xl){
-		font-size: 1.0625em;
+		font-size: 1em;
 	}
 }
 
@@ -567,7 +559,7 @@ body{
 				margin-bottom: $line-height;
 
 				@include r(md){
-					font-size: 1.75em;
+					font-size: 1.5em;
 					margin-bottom: 0;
 				}
 			}
@@ -586,7 +578,7 @@ body{
 				text-indent: 2em;
 
 				@include r(md){
-					font-size: 1.75em;
+					font-size: 1.5em;
 				}
 
 				p{
