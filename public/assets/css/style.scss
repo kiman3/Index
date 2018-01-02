@@ -235,9 +235,6 @@ body{
 
 		.scroll-top{
 			text-decoration: none;
-			mix-blend-mode: difference;
-			position: fixed;
-				bottom: 1.25em;
 		}
 
 	#c{
@@ -490,10 +487,6 @@ body{
 		}
 	}
 
-		.entry-typology{
-			color: $grey2;
-		}
-
 		.home-link{
 			display: inline-block;
 			position: relative;
@@ -561,6 +554,8 @@ body{
 				@include r(md){
 					font-size: 1.5em;
 					margin-bottom: 0;
+					mix-blend-mode: difference;
+					position: relative;
 				}
 			}
 
@@ -568,6 +563,18 @@ body{
 					line-height: inherit;
 					margin: 0;
 					max-width: 16em;
+
+					@include r(md){
+						position: fixed;
+					}
+				}
+
+				.entry-typology{
+					color: $grey2;
+
+					@include r(md){
+						position: fixed;
+					}
 				}
 
 			.entry-preamble{

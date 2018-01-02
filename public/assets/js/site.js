@@ -68,9 +68,9 @@
 	}
 	smoothScroll();
 
-	// Top scroll btn visiblity
+	// Top scroll btn visiblity CURRENTLY NOT IN USE
 	var scrollTopBtn = $('.scroll-top');
-	$(scrollTopBtn).hide();
+	// $(scrollTopBtn).hide();
 	function scrollBtn(){
 		var isOnTop = true;
 		$(window).scroll(function(){
@@ -82,7 +82,6 @@
 			$('.scroll-top').velocity("finish").velocity(effect, { delay: 500, duration: 1500 });
 		});
 	}
-	scrollBtn();
 
 	// Top scroll
 	function topScroll(){
