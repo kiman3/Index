@@ -2,7 +2,7 @@
 
 {% block content %}
 	<div id="coordinates">
-		<div class="projects">
+		<div class="projects" id="projects-container">
 		{% for entry in craft.entries.section('projects') %}
 			<a href="{{ entry.url }}" class="project" style="top: {{ entry.yPosition }}%; left: {{ entry.xPosition }}%;">
 				<div class="project-meta">

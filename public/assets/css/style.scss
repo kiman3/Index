@@ -227,7 +227,11 @@ body{
 					}
 				}
 
-	.footer-main{}
+	.footer-main{
+		a{
+			text-decoration: none;
+		}
+	}
 
 	.scroll-top-wrap{
 		position: relative;
@@ -291,6 +295,10 @@ body{
 				margin-bottom: $line-height*3;
 				text-decoration: none;
 				width: 100%;
+
+				.js &{
+					visibility: hidden;
+				}
 
 				@include r(md){
 					float: none;
@@ -478,11 +486,9 @@ body{
 
 	.entry-header{
 		float: none;
-		width: 100%;
 
 		@include r(md){
 			mix-blend-mode: difference;
-			position: fixed;
 			z-index: 3000;
 		}
 	}
@@ -491,6 +497,10 @@ body{
 			display: inline-block;
 			position: relative;
 			text-decoration: none;
+
+			@include r(md){
+				position: fixed;
+			}
 
 			&:before{
 				border : {
@@ -541,7 +551,7 @@ body{
 	}
 
 		.entry-article-header{
-			margin-bottom: $line-height;
+			margin-bottom: $line-height*2;
 		}
 
 			.entry-meta{
@@ -563,18 +573,10 @@ body{
 					line-height: inherit;
 					margin: 0;
 					max-width: 16em;
-
-					@include r(md){
-						position: fixed;
-					}
 				}
 
 				.entry-typology{
 					color: $grey2;
-
-					@include r(md){
-						position: fixed;
-					}
 				}
 
 			.entry-preamble{
@@ -601,19 +603,24 @@ body{
 
 			.entry-article-row{
 				align-items: flex-start;
-				margin-bottom: $line-height;
+				margin-bottom: $line-height*8;
 			}
 
 				.asset-meta{
 					color: $grey2;
-					@include tabFig;
+					@include propFig;
 				}
 
-					.asset-indice{
+					.asset-ext, .asset-size, .asset-chars{
 						display: none;
 					}
 
+					.asset-indice{
+						// display: none;
+					}
+
 				.entry-img{
+					cursor: s-resize;
 					float: left;
 					width: 100%;
 				}

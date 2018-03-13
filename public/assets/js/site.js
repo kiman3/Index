@@ -1,5 +1,20 @@
 (function($){
 
+	// Global variables
+	var page = $('html, body'),
+		project = $('.project');
+
+	function projectsFade(){
+		var v = $(".project").css('visibility', 'hidden'), cur = 0;
+		for(var j, x, i = v.length; i; j = parseInt(Math.random() * i), x = v[--i], v[i] = v[j], v[j] = x);
+		function fadeInNextLI() {
+			v.eq(cur++).css('visibility','visible').hide().velocity("fadeIn", { duration: 500 });
+			if(cur != v.length) setTimeout(fadeInNextLI, 200);
+		}
+		fadeInNextLI();
+	}
+	projectsFade();
+
 	function sorting(){
 		// Sorting functionality
 		var $grid = $('.archived-projects-wrap').isotope({
@@ -32,6 +47,48 @@
 	}
 	sorting();
 
+	function scrollCurrentPos(){
+		scrollPos = 0;
+		$(window).scroll(function(){
+    		scrollPos = $(document).scrollTop();
+		});
+	}
+	scrollCurrentPos();
+
+	function entryImgNav(){
+		entryImg = $('.entry-img');
+		$(entryImg).click(function(){
+			stopScroll();
+			entryNumber = $(this).attr('data-asset-number'),
+			entryNextNumber = ++entryNumber,
+			entryNext = $('#entry-img-' +  entryNextNumber),
+			entryFirst = $('#entry-img-1');
+			if (scrollPos > 0){
+				$(page).velocity("scroll", {
+					offset: entryNext.offset().top - 48,
+					duration: 500
+				});
+			} else {
+				$(page).velocity("scroll", {
+					offset: entryFirst.offset().top - 48,
+					duration: 500
+				});
+			}
+		});
+	}
+	entryImgNav();
+
+	function projectThumbsLoaded(){
+		$('#projects-container').imagesLoaded()
+		.always( function( instance ) {})
+		.done( function( instance ) {})
+		.fail( function() {})
+		.progress( function( instance, image ) {
+			$(image.img).fadeIn(800);
+		});
+	}
+	projectThumbsLoaded();
+
 	function hover(hover){
 		$(hover).hover(function(){
 			$(hover).not(this).addClass('hover-out');
@@ -41,15 +98,17 @@
 	}
 	hover('.archived-project');
 
-	// Smooth scroll
-	var page = $('html, body');
+	// Stop scroll animation if user scrolls
+	function stopScroll(){
+		page.on("scroll mousedown wheel DOMMouseScroll mousewheel keyup touchmove", function(){
+			page.velocity("stop");
+		});
+	}
 
 	// Anchor smooth scroll
 	function smoothScroll() {
 		$('a[href*="#"]:not([href="#"])').on('click', function() {
-			page.on("scroll mousedown wheel DOMMouseScroll mousewheel keyup touchmove", function(){
-				page.velocity("stop");
-			});
+			stopScroll();
 			if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
 				var target = $(this.hash);
 				target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
@@ -68,27 +127,10 @@
 	}
 	smoothScroll();
 
-	// Top scroll btn visiblity CURRENTLY NOT IN USE
-	var scrollTopBtn = $('.scroll-top');
-	// $(scrollTopBtn).hide();
-	function scrollBtn(){
-		var isOnTop = true;
-		$(window).scroll(function(){
-			var isCurrentOnTop = $(window).scrollTop()===0;
-			if(isOnTop == isCurrentOnTop) //scroll has changed but we only care when has changed from or to 0
-				return;
-			isOnTop = isCurrentOnTop;
-			var effect = isOnTop? "fadeOut": "fadeIn";
-			$('.scroll-top').velocity("finish").velocity(effect, { delay: 500, duration: 1500 });
-		});
-	}
-
 	// Top scroll
 	function topScroll(){
 		$('.scroll-top').on('click', function(){
-			page.on("scroll mousedown wheel DOMMouseScroll mousewheel keyup touchmove", function(){
-				page.velocity("stop");
-			});
+			stopScroll();
 			$(page).stop().velocity("scroll",
 			{
 				duration: 1500,
@@ -180,10 +222,12 @@
 				}
 			},
 			onAfter: function( $container, $newContent ) {
-				responsiveVideos(),
+				entryImgNav(),
 				hover('.archived-project'),
 				projectImgMouseMoveInit(),
-				scrollBtn(),
+				projectsFade(),
+				responsiveVideos(),
+				scrollCurrentPos(),
 				sorting(),
 				smoothScroll(),
 				topScroll(),

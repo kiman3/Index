@@ -22,7 +22,6 @@
 			{% set total = entryIds|length %}
 			Project {{ position }} of {{ total }}
 		</p>
-		<p class="entry-time">{{ entry.timePeriod }}</p>
 	</div>
 	<div class="col-xs-12 col-md-3">
 		<a href="/" class="home-link" rel="home">Back to index</a>
@@ -40,12 +39,12 @@
 						{% else %}
 						<h1 class="entry-title">{{ entry.title|widont }}</h1>
 					{% endif %}
-					
 				</div>
 			</div>
 			<div class="col-xs-12 col-md-3">
 				<div class="entry-meta">
 					<p class="entry-typology">{{ entry.typology }}</p>
+					<p class="entry-time">{{ entry.timePeriod }}</p>
 				</div>
 			</div>
 			<div class="col-xs-12 col-md-6">
@@ -61,55 +60,48 @@
 			<div class="entry-article-image entry-article-row row">
 				{% set asset = block.projectImage.first() %}
 				{% if asset %}
-					<div class="col-xs-12 col-md-9">
-						<img src="{{ asset.getUrl }}" alt="Project image" class="entry-img">
+					<div class="col-xs-12 col-md-10">
+						<img src="{{ asset.getUrl }}" alt="Project image" class="entry-img" id="entry-img-{{ loop.index }}" data-asset-number="{{ loop.index }}">
 					</div>
-					<div class="col-xs-12 col-md-3 first-md">
+					<div class="col-xs-12 col-md-1 first-md">
 						<div class="asset-meta">
 							<div class="asset-ext">Image/{{ asset.extension|upper }}</div>
 							<div class="asset-size">{{ ceil(asset.size/1000) }} kB</div>
-							<div class="asset-indice">Item {{ loop.index }}</div>
+							<div class="asset-indice">{{ loop.index }}/{{ loop.length }}</div>
 						</div>
 					</div>
 				{% endif %}
 			</div>
 			{% elseif block.type == "rowText" %}
 			<div class="entry-article-text entry-article-row row">
-				<div class="col-xs-12 col-md-2">
+				<div class="col-xs-12 col-md-6 col-md-offset-5">
+					<p class="entry-text">{{ block.projectText|widont }}</p>
+				</div>
+				<div class="col-xs-12 col-md-1 first-md">
 					<div class="asset-meta">
 						<div class="asset-ext">Text</div>
 						<div class="asset-chars">{{ block.projectText|length }} characters</div>
-						<div class="asset-indice">Item {{ loop.index }}</div>
+						<div class="asset-indice">{{ loop.index }}/{{ loop.length }}</div>
 					</div>
-				</div>
-				<div class="col-xs-12 col-md-{{ block.textWidth }} col-md-offset-{{ block.textOffset }}">
-					<p class="entry-text">{{ block.projectText|widont }}</p>
 				</div>
 			</div>
 			{% elseif block.type == "rowIframe" %}
 			<div class="entry-article-iframe entry-article-row row">
-				<div class="col-xs-12 col-md-2">
+				<div class="col-xs-12 col-md-10">
+					<div class="entry-iframe-container">
+						<iframe src="{{ block.iframe }}" frameborder="0" class="entry-iframe"></iframe>
+					</div>
+				</div>
+				<div class="col-xs-12 col-md-1 first-md">
 					<div class="asset-meta">
 						<div class="asset-ext">iFrame</div>
 						<div class="asset-chars"> {{ block.iframe }}</div>
 						<div class="asset-indice">Item {{ loop.index }}</div>
 					</div>
 				</div>
-				<div class="col-xs-12 col-md-10">
-					<div class="entry-iframe-container">
-						<iframe src="{{ block.iframe }}" frameborder="0" class="entry-iframe"></iframe>
-					</div>
-				</div>
 			</div>
 			{% elseif block.type == "rowVideo" %}
 			<div class="entry-article-video entry-article-row row">
-				<div class="col-xs-12 col-md-2">
-					<div class="asset-meta">
-						<div class="asset-ext">Video</div>
-						<div class="asset-chars">{{ block.videoType }}</div>
-						<div class="asset-indice">Item {{ loop.index }}</div>
-					</div>
-				</div>
 				<div class="col-xs-12 col-md-{{ block.videoWidth }} col-md-offset-{{ block.videoOffset }}">
 					<div class="entry-video-container">
 						{% if block.videoType == 'embed' %}
@@ -120,6 +112,13 @@
 							<video src="{{ assetVid.getUrl }}"></video>
 							{% endif %}
 						{% endif %}
+					</div>
+					<div class="col-xs-12 col-md-1 first-md">
+						<div class="asset-meta">
+							<div class="asset-ext">Video</div>
+							<div class="asset-chars">{{ block.videoType }}</div>
+							<div class="asset-indice">Item {{ loop.index }}</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -132,14 +131,8 @@
 
 {% block footer %}
 <footer class="footer-main row">
-	<div class="col-xs-12 col-md-3 scroll-top-wrap">
-		<a href="#" class="scroll-top">Scroll up</a>
-	</div>
-	<div class="col-xs-12 col-md-3 ">
-		<a href="#">Back to index</a>
-	</div>
-	<div class="col-xs-12 col-md-3 ">
-		<a href="#">About &amp; contact</a>
+	<div class="col-xs-12 col-md-3 col-md-offset-6 scroll-top-wrap">
+		<a href="#" class="scroll-top">Scroll to top</a>
 	</div>
 </footer>
 {% endblock %}

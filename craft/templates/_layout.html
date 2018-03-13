@@ -8,7 +8,7 @@
 	<link rel="shortcut icon" href="{{ siteUrl }}assets/img/favicon.ico" />
 </head>
 
-<body {% if bodytag is defined %}id="{{ bodytag }}"{% endif %}>
+<body class="no-js" {% if bodytag is defined %}id="{{ bodytag }}"{% endif %}>
 	<div id="container" class="container-fluid">
 		{% block header %}
 		<header id="header" class="header-main">
@@ -19,11 +19,11 @@
 					<li class="nav-item">
 						<a href="#coordinates" class="nav-link nav-link-projects">Projects</a>
 					</li>
-					<li class="nav-item">
+					{# <li class="nav-item">
 						<a href="archive" class="nav-link">Archive</a>
-					</li>
+					</li> #}
 					<li class="nav-item">
-						<a href="about" class="nav-link">About &amp; contact</a>
+						<a href="about" class="nav-link">About + contact</a>
 					</li>
 				</ul>
 			</nav>
@@ -39,6 +39,9 @@
 		{% block footer %}
 		{% endblock %}
 	</div>
+	<script>
+		document.body.className = document.body.className.replace("no-js","js");
+	</script>
 	<script src="assets/js/vendor-min.js"></script>
 	<script src="assets/js/site.js"></script>
 </body>
