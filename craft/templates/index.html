@@ -7,9 +7,9 @@
 			<a href="{{ entry.url }}" class="project" style="top: {{ entry.yPosition }}%; left: {{ entry.xPosition }}%;">
 				<div class="project-meta">
 					{% if entry.projectTitleMaxWidth > 0 %}
-						<h2 class="project-title" style="max-width: {{ entry.projectTitleMaxWidth }}em;">{{ entry.title|widont }}</h2>
+						<h2 class="project-title" style="max-width: {{ entry.projectTitleMaxWidth }}em;">{{ entry.title|typogrify }}</h2>
 						{% else %}
-						<h2 class="project-title">{{ entry.title|widont }}</h2>
+						<h2 class="project-title">{{ entry.title|typogrify }}</h2>
 					{% endif %}
 					<div class="project-typology">{{ entry.typology }}</div>
 				</div>

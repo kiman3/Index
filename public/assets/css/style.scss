@@ -375,6 +375,10 @@ body{
 					margin-top: $line-height;
 					width: 100%;
 
+					.js &{
+						visibility: hidden;
+					}
+
 					img{
 						float: left;
 						width: 80%;

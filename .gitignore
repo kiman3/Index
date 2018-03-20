@@ -3,12 +3,14 @@
 !/craft/storage/logo/*
 /craft/app
 /craft/config
+/craft/vendor
 *.codekit3
 *.sublime-project
 *.sublime-workspace
 style.css.map
 public/assets/css/fonts/
 public/assets/css/fonts/*
+public/cpresources
 public/project
 public/uploads
 public/assets/fonts/GT-Cinetype-Regular.eot

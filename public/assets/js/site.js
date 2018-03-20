@@ -4,17 +4,19 @@
 	var page = $('html, body'),
 		project = $('.project');
 
+	// Projects on index fade in randomly. 
 	function projectsFade(){
 		var v = $(".project").css('visibility', 'hidden'), cur = 0;
 		for(var j, x, i = v.length; i; j = parseInt(Math.random() * i), x = v[--i], v[i] = v[j], v[j] = x);
 		function fadeInNextLI() {
-			v.eq(cur++).css('visibility','visible').hide().velocity("fadeIn", { duration: 500 });
-			if(cur != v.length) setTimeout(fadeInNextLI, 200);
+			v.eq(cur++).css('visibility','visible').hide().velocity("fadeIn", { duration: 800 });
+				if(cur != v.length) setTimeout(fadeInNextLI, 150);
 		}
 		fadeInNextLI();
 	}
 	projectsFade();
 
+	// Sorting of archive table
 	function sorting(){
 		// Sorting functionality
 		var $grid = $('.archived-projects-wrap').isotope({
@@ -47,6 +49,7 @@
 	}
 	sorting();
 
+	// Current scroll position
 	function scrollCurrentPos(){
 		scrollPos = 0;
 		$(window).scroll(function(){
@@ -55,6 +58,7 @@
 	}
 	scrollCurrentPos();
 
+	// Entry images click scrollto navigation
 	function entryImgNav(){
 		entryImg = $('.entry-img');
 		$(entryImg).click(function(){
@@ -78,17 +82,19 @@
 	}
 	entryImgNav();
 
+	// Project thumbs loaded, fade in
 	function projectThumbsLoaded(){
 		$('#projects-container').imagesLoaded()
-		.always( function( instance ) {})
-		.done( function( instance ) {})
-		.fail( function() {})
-		.progress( function( instance, image ) {
-			$(image.img).fadeIn(800);
-		});
+			.always( function( instance ) {})
+			.done( function( instance ) {})
+			.fail( function() {})
+			.progress( function( instance, image ) {
+				$(image.img).css('visibility','visible').hide().velocity("fadeIn", { duration: 800 });
+			});
 	}
 	projectThumbsLoaded();
 
+	// Hover function set class (general, now used for archived projects)
 	function hover(hover){
 		$(hover).hover(function(){
 			$(hover).not(this).addClass('hover-out');
