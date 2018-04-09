@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "41721c30429c10dac3d087b05f89f5fb",
+    "content-hash": "07de2caaae33f374f49124e0fe71ac65",
     "packages": [
         {
             "name": "cebe/markdown",
@@ -63,22 +63,17 @@
         },
         {
             "name": "composer/ca-bundle",
-            "version": "1.1.0",
+            "version": "1.1.1",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/ca-bundle/zipball/943b2c4fcad1ef178d16a713c2468bf7e579c288",
-                "reference": "943b2c4fcad1ef178d16a713c2468bf7e579c288",
+                "url": "https://api.github.com/repos/composer/ca-bundle/zipball/d2c0a83b7533d6912e8d516756ebd34f893e9169",
+                "reference": "d2c0a83b7533d6912e8d516756ebd34f893e9169",
                 "shasum": ""
             },
             "require": {
                 "ext-openssl": "*",
                 "ext-pcre": "*",
                 "php": "^5.3.2 || ^7.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^4.8.35",
-                "psr/log": "^1.0",
-                "symfony/process": "^2.5 || ^3.0 || ^4.0"
             },
             "type": "library",
             "extra": {
@@ -91,7 +86,6 @@
                     "Composer\\CaBundle\\": "src"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -110,7 +104,7 @@
                 "ssl",
                 "tls"
             ],
-            "time": "2017-11-29T09:37:33+00:00"
+            "time": "2018-03-29T19:57:20+00:00"
         },
         {
             "name": "composer/composer",
@@ -299,11 +293,11 @@
         },
         {
             "name": "craftcms/cms",
-            "version": "3.0.0-RC15",
+            "version": "3.0.1",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/craftcms/cms/zipball/2c92030aa91e5ed655dd7896f7739737d8b8ea29",
-                "reference": "2c92030aa91e5ed655dd7896f7739737d8b8ea29",
+                "url": "https://api.github.com/repos/craftcms/cms/zipball/03289e4369d732093751f34484f3852885769808",
+                "reference": "03289e4369d732093751f34484f3852885769808",
                 "shasum": ""
             },
             "require": {
@@ -331,7 +325,7 @@
                 "pixelandtonic/imagine": "~0.7.1.2",
                 "seld/cli-prompt": "~1.0.3",
                 "twig/twig": "~2.4.4",
-                "yiisoft/yii2": "~2.0.14.2",
+                "yiisoft/yii2": "~2.0.15.1",
                 "yiisoft/yii2-debug": "~2.0.10",
                 "yiisoft/yii2-queue": "~2.0.1",
                 "yiisoft/yii2-swiftmailer": "~2.1.0",
@@ -344,12 +338,6 @@
                 "bower-asset/punycode": "1.3.*",
                 "bower-asset/yii2-pjax": "~2.0.1"
             },
-            "require-dev": {
-                "codeception/codeception": "~2.3.3",
-                "codeception/mockery-module": "~0.2.2",
-                "codeception/specify": "~0.4.6",
-                "codeception/verify": "~0.3.3"
-            },
             "suggest": {
                 "ext-iconv": "Adds support for more character encodings than PHP’s built-in mb_convert_encoding() function, which Craft will take advantage of when converting strings to UTF-8.",
                 "ext-imagick": "Adds support for more image processing formats and options.",
@@ -361,7 +349,6 @@
                     "craft\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "proprietary"
             ],
@@ -372,7 +359,15 @@
                 "craftcms",
                 "yii2"
             ],
-            "time": "2018-03-13T20:20:40+00:00"
+            "support": {
+                "email": "support@craftcms.com",
+                "issues": "https://github.com/craftcms/cms/issues?state=open",
+                "forum": "https://craftcms.stackexchange.com/",
+                "source": "https://github.com/craftcms/cms",
+                "docs": "https://github.com/craftcms/docs",
+                "rss": "https://github.com/craftcms/cms/releases.atom"
+            },
+            "time": "2018-04-04T23:55:39+00:00"
         },
         {
             "name": "craftcms/oauth2-craftid",
@@ -458,15 +453,15 @@
         },
         {
             "name": "craftcms/redactor",
-            "version": "1.0.1",
+            "version": "1.1.0",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/craftcms/redactor/zipball/0ca795da09e06f50edbc7a99f36b9359ad9e72ed",
-                "reference": "0ca795da09e06f50edbc7a99f36b9359ad9e72ed",
+                "url": "https://api.github.com/repos/craftcms/redactor/zipball/3e106505ce19d6e17e3941161026113d2c9d4a20",
+                "reference": "3e106505ce19d6e17e3941161026113d2c9d4a20",
                 "shasum": ""
             },
             "require": {
-                "craftcms/cms": "^3.0.0-RC1"
+                "craftcms/cms": "^3.0.0-RC15"
             },
             "type": "craft-plugin",
             "extra": {
@@ -504,7 +499,7 @@
                 "docs": "https://github.com/craftcms/redactor",
                 "rss": "https://github.com/craftcms/redactor/commits/master.atom"
             },
-            "time": "2018-01-25T02:45:45+00:00"
+            "time": "2018-04-04T03:19:48+00:00"
         },
         {
             "name": "craftcms/server-check",
@@ -831,11 +826,11 @@
         },
         {
             "name": "guzzlehttp/guzzle",
-            "version": "6.3.0",
+            "version": "6.3.2",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/f4db5a78a5ea468d4831de7f0bf9d9415e348699",
-                "reference": "f4db5a78a5ea468d4831de7f0bf9d9415e348699",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/68d0ea14d5a3f42a20e87632a5f84931e2709c90",
+                "reference": "68d0ea14d5a3f42a20e87632a5f84931e2709c90",
                 "shasum": ""
             },
             "require": {
@@ -843,18 +838,13 @@
                 "guzzlehttp/psr7": "^1.4",
                 "php": ">=5.5"
             },
-            "require-dev": {
-                "ext-curl": "*",
-                "phpunit/phpunit": "^4.0 || ^5.0",
-                "psr/log": "^1.0"
-            },
             "suggest": {
                 "psr/log": "Required for using the Log middleware"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "6.2-dev"
+                    "dev-master": "6.3-dev"
                 }
             },
             "autoload": {
@@ -865,7 +855,6 @@
                     "GuzzleHttp\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -887,7 +876,7 @@
                 "rest",
                 "web service"
             ],
-            "time": "2017-06-22T18:50:49+00:00"
+            "time": "2018-03-26T16:33:04+00:00"
         },
         {
             "name": "guzzlehttp/promises",
@@ -1373,11 +1362,11 @@
         },
         {
             "name": "nystudio107/craft-typogrify",
-            "version": "1.1.8",
+            "version": "1.1.9",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nystudio107/craft-typogrify/zipball/ebc4ea55050d88021d72c78eaae31a6448243e34",
-                "reference": "ebc4ea55050d88021d72c78eaae31a6448243e34",
+                "url": "https://api.github.com/repos/nystudio107/craft-typogrify/zipball/26ade78f72a67dcff0d65493545bbbd85999926b",
+                "reference": "26ade78f72a67dcff0d65493545bbbd85999926b",
                 "shasum": ""
             },
             "require": {
@@ -1424,7 +1413,7 @@
                 "docs": "https://github.com/nystudio107/craft-typogrify/blob/v1/README.md",
                 "issues": "https://github.com/nystudio107/craft-typogrify/issues"
             },
-            "time": "2018-03-12T14:39:09+00:00"
+            "time": "2018-03-20T23:05:07+00:00"
         },
         {
             "name": "paragonie/random_compat",
@@ -1787,11 +1776,11 @@
         },
         {
             "name": "symfony/console",
-            "version": "v3.4.6",
+            "version": "v3.4.7",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/067339e9b8ec30d5f19f5950208893ff026b94f7",
-                "reference": "067339e9b8ec30d5f19f5950208893ff026b94f7",
+                "url": "https://api.github.com/repos/symfony/console/zipball/d4bb70fa24d540c309d88a9d6e43fb2d339b1fbf",
+                "reference": "d4bb70fa24d540c309d88a9d6e43fb2d339b1fbf",
                 "shasum": ""
             },
             "require": {
@@ -1802,14 +1791,6 @@
             "conflict": {
                 "symfony/dependency-injection": "<3.4",
                 "symfony/process": "<3.3"
-            },
-            "require-dev": {
-                "psr/log": "~1.0",
-                "symfony/config": "~3.3|~4.0",
-                "symfony/dependency-injection": "~3.4|~4.0",
-                "symfony/event-dispatcher": "~2.8|~3.0|~4.0",
-                "symfony/lock": "~3.4|~4.0",
-                "symfony/process": "~3.3|~4.0"
             },
             "suggest": {
                 "psr/log": "For using the console logger",
@@ -1831,7 +1812,6 @@
                     "/Tests/"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1847,15 +1827,15 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2018-02-26T15:46:28+00:00"
+            "time": "2018-04-03T05:22:50+00:00"
         },
         {
             "name": "symfony/debug",
-            "version": "v4.0.6",
+            "version": "v4.0.7",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/debug/zipball/1721e4e7effb23480966690cdcdc7d2a4152d489",
-                "reference": "1721e4e7effb23480966690cdcdc7d2a4152d489",
+                "url": "https://api.github.com/repos/symfony/debug/zipball/5961d02d48828671f5d8a7805e06579d692f6ede",
+                "reference": "5961d02d48828671f5d8a7805e06579d692f6ede",
                 "shasum": ""
             },
             "require": {
@@ -1864,9 +1844,6 @@
             },
             "conflict": {
                 "symfony/http-kernel": "<3.4"
-            },
-            "require-dev": {
-                "symfony/http-kernel": "~3.4|~4.0"
             },
             "type": "library",
             "extra": {
@@ -1882,7 +1859,6 @@
                     "/Tests/"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1898,11 +1874,11 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
-            "time": "2018-02-28T21:50:02+00:00"
+            "time": "2018-04-03T05:24:00+00:00"
         },
         {
             "name": "symfony/filesystem",
-            "version": "v3.4.6",
+            "version": "v3.4.7",
             "dist": {
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/filesystem/zipball/253a4490b528597aa14d2bf5aeded6f5e5e4a541",
@@ -1926,7 +1902,6 @@
                     "/Tests/"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1946,11 +1921,11 @@
         },
         {
             "name": "symfony/finder",
-            "version": "v3.4.6",
+            "version": "v3.4.7",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/finder/zipball/a479817ce0a9e4adfd7d39c6407c95d97c254625",
-                "reference": "a479817ce0a9e4adfd7d39c6407c95d97c254625",
+                "url": "https://api.github.com/repos/symfony/finder/zipball/7a2e1299cc0c4162996f18e347b6356729a55317",
+                "reference": "7a2e1299cc0c4162996f18e347b6356729a55317",
                 "shasum": ""
             },
             "require": {
@@ -1970,7 +1945,6 @@
                     "/Tests/"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -1986,7 +1960,7 @@
             ],
             "description": "Symfony Finder Component",
             "homepage": "https://symfony.com",
-            "time": "2018-03-05T18:28:11+00:00"
+            "time": "2018-03-28T18:23:39+00:00"
         },
         {
             "name": "symfony/polyfill-mbstring",
@@ -2044,11 +2018,11 @@
         },
         {
             "name": "symfony/process",
-            "version": "v3.4.6",
+            "version": "v3.4.7",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/process/zipball/cc4aea21f619116aaf1c58016a944e4821c8e8af",
-                "reference": "cc4aea21f619116aaf1c58016a944e4821c8e8af",
+                "url": "https://api.github.com/repos/symfony/process/zipball/4b7d64e852886319e93ddfdecff0d744ab87658b",
+                "reference": "4b7d64e852886319e93ddfdecff0d744ab87658b",
                 "shasum": ""
             },
             "require": {
@@ -2068,7 +2042,6 @@
                     "/Tests/"
                 ]
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -2084,30 +2057,20 @@
             ],
             "description": "Symfony Process Component",
             "homepage": "https://symfony.com",
-            "time": "2018-02-12T17:55:00+00:00"
+            "time": "2018-04-03T05:22:50+00:00"
         },
         {
             "name": "twig/twig",
-            "version": "v2.4.7",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/twigphp/Twig.git",
-                "reference": "69aacd44dbbaa3199d5afb68605c996d577896fc"
-            },
+            "version": "v2.4.8",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/69aacd44dbbaa3199d5afb68605c996d577896fc",
-                "reference": "69aacd44dbbaa3199d5afb68605c996d577896fc",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/7b604c89da162034bdf4bb66310f358d313dd16d",
+                "reference": "7b604c89da162034bdf4bb66310f358d313dd16d",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.0",
                 "symfony/polyfill-mbstring": "~1.0"
-            },
-            "require-dev": {
-                "psr/container": "^1.0",
-                "symfony/debug": "^2.7",
-                "symfony/phpunit-bridge": "^3.3"
             },
             "type": "library",
             "extra": {
@@ -2123,7 +2086,6 @@
                     "Twig\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -2150,15 +2112,15 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2018-03-20T04:31:17+00:00"
+            "time": "2018-04-02T09:24:19+00:00"
         },
         {
             "name": "yiisoft/yii2",
-            "version": "2.0.14.2",
+            "version": "2.0.15.1",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/ef74f3783e964cea477f06e6d6ce209df1f37881",
-                "reference": "ef74f3783e964cea477f06e6d6ce209df1f37881",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/ed3a9e1c4abe206e1c3ce48a6b3624119b79850d",
+                "reference": "ed3a9e1c4abe206e1c3ce48a6b3624119b79850d",
                 "shasum": ""
             },
             "require": {
@@ -2188,7 +2150,6 @@
                     "yii\\": ""
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -2245,7 +2206,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2018-03-13T14:15:01+00:00"
+            "time": "2018-03-21T18:36:53+00:00"
         },
         {
             "name": "yiisoft/yii2-bootstrap",
@@ -2304,18 +2265,15 @@
         },
         {
             "name": "yiisoft/yii2-composer",
-            "version": "2.0.5",
+            "version": "2.0.6",
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-composer/zipball/3f4923c2bde6caf3f5b88cc22fdd5770f52f8df2",
-                "reference": "3f4923c2bde6caf3f5b88cc22fdd5770f52f8df2",
+                "url": "https://api.github.com/repos/yiisoft/yii2-composer/zipball/163419f1f197e02f015713b0d4f85598d8f8aa80",
+                "reference": "163419f1f197e02f015713b0d4f85598d8f8aa80",
                 "shasum": ""
             },
             "require": {
                 "composer-plugin-api": "^1.0"
-            },
-            "require-dev": {
-                "composer/composer": "^1.0"
             },
             "type": "composer-plugin",
             "extra": {
@@ -2329,7 +2287,6 @@
                     "yii\\composer\\": ""
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -2337,6 +2294,10 @@
                 {
                     "name": "Qiang Xue",
                     "email": "qiang.xue@gmail.com"
+                },
+                {
+                    "name": "Carsten Brandt",
+                    "email": "mail@cebe.cc"
                 }
             ],
             "description": "The composer plugin for Yii extension installer",
@@ -2345,7 +2306,7 @@
                 "extension installer",
                 "yii2"
             ],
-            "time": "2016-12-20T13:26:02+00:00"
+            "time": "2018-03-21T16:15:55+00:00"
         },
         {
             "name": "yiisoft/yii2-debug",
@@ -2648,9 +2609,7 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "craftcms/cms": 5
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

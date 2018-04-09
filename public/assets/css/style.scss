@@ -562,14 +562,22 @@ body{
 				@include propFig;
 				font-size: 1.25em;
 				letter-spacing: $letter-spacing-large;
-				line-height: 1.3125;
+				line-height: 1.15;
 				margin-bottom: $line-height;
 
 				@include r(md){
-					font-size: 1.5em;
+					font-size: 2em;
 					margin-bottom: 0;
 					mix-blend-mode: difference;
 					position: relative;
+				}
+
+				@include r(lg){
+					font-size: 2.5em;
+				}
+
+				@include r(xl){
+					font-size: 3em;
 				}
 			}
 

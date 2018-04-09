@@ -1,7 +1,7 @@
 {
     "require": {
-        "craftcms/cms": "^3.0.0-RC1",
-        "nystudio107/craft-typogrify": "1.1.8",
-        "craftcms/redactor": "1.0.1"
+        "craftcms/cms": "3.0.1",
+        "nystudio107/craft-typogrify": "1.1.9",
+        "craftcms/redactor": "1.1.0"
     }
 }
