@@ -1,0 +1,5 @@
+{
+    "require": {
+        "mmikkel/cp-field-inspect": "^1.0"
+    }
+}
