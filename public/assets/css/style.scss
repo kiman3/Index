@@ -4,7 +4,7 @@
 @import 'flexboxgrid.min.scss';
 
 // Font stacks
-$font: GT Cinetype, Helvetica, Arial, sans-serif;
+$font: Neue Haas Grotesk Text Pro, GT Cinetype, Helvetica, Arial, sans-serif;
 
 // Main colors
 $black: #000000;
@@ -18,7 +18,7 @@ $grey2: #999;
 $padding-main: 1em;
 $line-height: 1.375em;
 $line-height-heading: 1.15em;
-$letter-spacing-body: -0.01em;
+$letter-spacing-body: -0.005em;
 $letter-spacing-large: -0.02em;
 
 // Responsive widths and mixin
@@ -105,9 +105,9 @@ body{
 	overflow-x: hidden;
 	text-rendering: optimizeLegibility;
 
-	@include r(xl){
-		font-size: 1em;
-	}
+	// @include r(xl){
+	// 	font-size: 1em;
+	// }
 }
 
 	a{
@@ -163,9 +163,14 @@ body{
 #container{
 	min-height: 100vh;
 	padding: 1em;
+	transition: opacity 0.25s ease-in-out;
 
 	@include r(md){
 		padding: 1.25em;
+	}
+
+	&.pfft{
+		opacity: 0;
 	}
 }
 
@@ -228,10 +233,30 @@ body{
 				}
 
 	.footer-main{
+		margin-top: $line-height*5;
+
 		a{
 			text-decoration: none;
 		}
 	}
+
+		.project-nav{
+			display: block;
+			text-decoration: none;
+
+			&:active, &:focus, &:hover{
+				.project-nav-label{
+					color: $text;
+				}
+			}
+		}
+
+			.project-nav-label{
+				color: $grey2;
+				transition: color 0.3s ease-in-out;
+			}
+
+			.project-nav-title{}
 
 	.scroll-top-wrap{
 		position: relative;
@@ -261,7 +286,7 @@ body{
 		padding: $padding-main;
 		position: absolute;
 			top: 0;
-			left: $padding-main*2.4;
+			// left: $padding-main*2.4;
 		width: calc(100% - 3em);
 
 		@include r(md){
@@ -381,7 +406,7 @@ body{
 
 					img{
 						float: left;
-						width: 80%;
+						width: 100%;
 					}
 
 					@include r(md){
@@ -396,7 +421,6 @@ body{
 
 						img{
 							transform: translate(-50%, -50%);
-							width: 100%;
 						}
 					}
 				}
@@ -464,7 +488,7 @@ body{
 				}
 
 					.x-left{
-						left: -1em;
+						left: -0.5em;
 						bottom: -$line-height;
 
 						@include r(md){
@@ -474,7 +498,7 @@ body{
 
 					.x-right{
 						top: -$line-height;
-						left: -1.65em;
+						left: -0.5em;
 
 						@include r(md){
 							background: $black;
@@ -501,37 +525,10 @@ body{
 			display: inline-block;
 			position: relative;
 			text-decoration: none;
-
-			@include r(md){
-				position: fixed;
-			}
-
-			&:before{
-				border : {
-					top: 1px solid $text;
-					left: 1px solid $text;
-				}
-				content: "";
-				height: 10px;
-				position: absolute;
-					top: 4px;
-					left: -18px;
-				transform: rotate(-45deg);
-				width: 10px;
-			}
-
-			&:after{
-				border-top: 1px solid $text;
-				content: "";
-				height: 1px;
-				position: absolute;
-					top: 8px;
-					left: -18px;
-				width: 12px;
-			}
 		}
 
 		.entry-position{
+			color: $grey2;
 			@include propFig;
 			margin-top: $line-height;
 
@@ -551,71 +548,43 @@ body{
 
 		@include r(md){
 			margin-top: $line-height-heading*5;
+			margin-top: 18vh;
 		}
 	}
 
 		.entry-article-header{
-			margin-bottom: $line-height*2;
+			margin-bottom: 0.5em;
+			mix-blend-mode: difference;
+			position: sticky;
+				top: 0.5em;
 		}
 
 			.entry-meta{
 				@include propFig;
-				font-size: 1.25em;
-				letter-spacing: $letter-spacing-large;
 				line-height: 1.15;
-				margin-bottom: $line-height;
-
-				@include r(md){
-					font-size: 2em;
-					margin-bottom: 0;
-					mix-blend-mode: difference;
-					position: relative;
-				}
-
-				@include r(lg){
-					font-size: 2.5em;
-				}
-
-				@include r(xl){
-					font-size: 3em;
-				}
 			}
 
 				.entry-title{
 					line-height: inherit;
 					margin: 0;
-					max-width: 16em;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					white-space: nowrap;
 				}
 
-				.entry-typology{
+				.entry-client, .entry-typology{
 					color: $grey2;
 				}
-
-			.entry-preamble{
-				color: #ddd;
-				font-size: 1.25em;
-				letter-spacing: $letter-spacing-large;
-				line-height: 1.3125;
-				text-indent: 2em;
-
-				@include r(md){
-					font-size: 1.5em;
-				}
-
-				p{
-					text-indent: 2em;
-
-					&:first-of-type{
-						text-indent: 0;
-					}
-				}
-			}
 
 		.entry-article-content{}
 
 			.entry-article-row{
 				align-items: flex-start;
-				margin-bottom: $line-height*8;
+				margin-bottom: 2.5em;
+
+				&:last-of-type{
+					margin-bottom: 1.25em;
+				}
 			}
 
 				.asset-meta{
@@ -624,7 +593,7 @@ body{
 				}
 
 					.asset-ext, .asset-size, .asset-chars{
-						display: none;
+						// display: none;
 					}
 
 					.asset-indice{
@@ -632,7 +601,7 @@ body{
 					}
 
 				.entry-img{
-					cursor: s-resize;
+					cursor: none;
 					float: left;
 					width: 100%;
 				}
@@ -656,6 +625,27 @@ body{
 							left: 0;
 						width: 100%;
 					}
+
+		.entry-preamble{
+			color: #ddd;
+			font-size: 1.25em;
+			letter-spacing: $letter-spacing-large;
+			line-height: 1.25;
+			text-indent: 2em;
+
+			@include r(md){
+				font-size: 2vw;
+			}
+
+			p{
+				max-width: 100%;
+				text-indent: 2em;
+
+				&:first-of-type{
+					text-indent: 0;
+				}
+			}
+		}
 
 
 	// Archive
@@ -766,3 +756,17 @@ body{
 							width: 100%;
 						}
 					}
+
+	.cursor{
+		color: #fff;
+		display: none;
+		@include propFig;
+		margin-left: -5em;
+		mix-blend-mode: difference;
+		pointer-events: none;
+		position: fixed;
+			top: 0;
+			left: 0;
+		text-align: center;
+		width: 10em;
+	}
