@@ -11,8 +11,8 @@
 			var v = $(".project").css('visibility', 'hidden'), cur = 0;
 			for(var j, x, i = v.length; i; j = parseInt(Math.random() * i), x = v[--i], v[i] = v[j], v[j] = x);
 			function fadeInNext() {
-				v.eq(cur++).css('visibility','visible').hide().velocity("fadeIn", { duration: 800 });
-					if(cur != v.length) setTimeout(fadeInNext, 150);
+				v.eq(cur++).css('visibility','visible').hide().velocity("fadeIn", { duration: 650 });
+					if(cur != v.length) setTimeout(fadeInNext, 100);
 			}
 			fadeInNext();
 		} else{

@@ -19,11 +19,11 @@
 					<li class="nav-item">
 						<a href="#coordinates" class="nav-link nav-link-projects">Projects</a>
 					</li>
-					{# <li class="nav-item">
-						<a href="archive" class="nav-link">Archive</a>
-					</li> #}
 					<li class="nav-item">
-						<a href="about" class="nav-link">About + contact</a>
+						<a href="archive" class="nav-link">Archive</a>
+					</li>
+					<li class="nav-item">
+						<a href="about" class="nav-link">About</a>
 					</li>
 				</ul>
 			</nav>
@@ -39,6 +39,7 @@
 		{% block footer %}
 		{% endblock %}
 	</div>
+	<canvas id="c"></canvas>
 	<script>
 		document.body.className = document.body.className.replace("no-js","js");
 	</script>

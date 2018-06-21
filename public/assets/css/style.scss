@@ -18,7 +18,7 @@ $grey2: #999;
 $padding-main: 1em;
 $line-height: 1.375em;
 $line-height-heading: 1.15em;
-$letter-spacing-body: -0.005em;
+$letter-spacing-body: -0.0075em;
 $letter-spacing-large: -0.02em;
 
 // Responsive widths and mixin
@@ -576,6 +576,10 @@ body{
 					color: $grey2;
 				}
 
+				.entry-read-more{
+					text-decoration: none;
+				}
+
 		.entry-article-content{}
 
 			.entry-article-row{
@@ -601,7 +605,7 @@ body{
 					}
 
 				.entry-img{
-					cursor: none;
+					cursor: s-resize;
 					float: left;
 					width: 100%;
 				}
@@ -765,7 +769,7 @@ body{
 		mix-blend-mode: difference;
 		pointer-events: none;
 		position: fixed;
-			top: 0;
+			top: -2em;
 			left: 0;
 		text-align: center;
 		width: 10em;
