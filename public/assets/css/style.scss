@@ -279,9 +279,25 @@ body{
 		z-index: 10000;
 
 		&:before{
-			content: "Loading";
+			animation: blink 2s linear infinite;
+			content: "Loading page";
 			position: absolute;
 				top: 1.25em;
+				left: 1.25em;
+		}
+
+		@keyframes blink{
+			50%{
+				opacity: 0.25;
+			}
+		}
+
+		&:after{
+			color: $grey2;
+			content: "Your mouse movements";
+			display: none;
+			position: absolute;
+				bottom: 1.25em;
 				left: 1.25em;
 		}
 
@@ -292,7 +308,7 @@ body{
 
 		#c{
 			height: 100%;
-			opacity: 0.75;
+			opacity: 0.5;
 			pointer-events: none;
 			position: fixed;
 				top: 0;
@@ -813,6 +829,25 @@ body{
 							width: 100%;
 						}
 					}
+
+	// About
+
+	.about-content{
+		margin-top: $line-height*5;
+	}
+
+	.about-row{
+		margin-top: $line-height*2;
+	}
+
+		.about-title{
+			color: $grey2;
+			margin-bottom: $line-height;
+		}
+
+		.about-paragraph{
+			max-width: 100%;
+		}
 
 	.cursor{
 		color: #fff;
