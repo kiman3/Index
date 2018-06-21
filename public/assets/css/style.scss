@@ -266,24 +266,48 @@ body{
 			text-decoration: none;
 		}
 
-	#c{
+	.transition-layer{
+		background: #000;
 		height: 100%;
+		opacity: 0;
 		pointer-events: none;
 		position: fixed;
 			top: 0;
 			left: 0;
-		opacity: 0;
+		transition: opacity 0.2s ease;
 		width: 100%;
-		z-index: -1;
+		z-index: 10000;
+
+		&:before{
+			content: "Loading";
+			position: absolute;
+				top: 1.25em;
+				left: 1.25em;
+		}
+
+		.transitioning &{
+			opacity: 1;
+		}
 	}
+
+		#c{
+			height: 100%;
+			opacity: 0.75;
+			pointer-events: none;
+			position: fixed;
+				top: 0;
+				left: 0;
+			width: 100%;
+		}
 
 
 	// Index
 
 	#coordinates{
-		margin-top: calc(100vh - 1.375em - 6em - 5.5em);
+		margin-top: calc(100vh - 1.375em - 7em - 5.5em);
 		margin-bottom: $line-height*2;
 		padding: $padding-main;
+			padding-top: $padding-main*3;
 		position: absolute;
 			top: 0;
 			// left: $padding-main*2.4;
@@ -380,7 +404,7 @@ body{
 							backface-visibility: hidden;
 							border-radius: 5px;
 							content: "";
-							display: block;
+							display: none;
 							height: 10px;
 							position: absolute;
 								top: 0.25em;
@@ -388,6 +412,10 @@ body{
 							transform: scale(1.25);
 							transition: background 0.2s ease, transform .5s linear;
 							width: 10px;
+
+							@include r(md){
+								display: block;
+							}
 						}
 					}
 
@@ -466,7 +494,7 @@ body{
 			.x{
 				height: 100%;
 				top: 0;
-				left: 1px;
+				left: 50%;
 				width: 1px;
 
 				@include r(md){
@@ -477,18 +505,24 @@ body{
 				}
 			}
 
-				.x span{
+				.x-left, .x-right{
+					display: inline-block;
 					height: 1em;
 					position: absolute;
+						left: -5em;
+					text-align: center;
+					width: 10em;
 					z-index: 20;
 						
 					@include r(md){
+						left: auto;
+						text-align: left;
 						top: -0.5em;
+						width: auto;
 					}
 				}
 
 					.x-left{
-						left: -0.5em;
 						bottom: -$line-height;
 
 						@include r(md){
@@ -498,12 +532,11 @@ body{
 
 					.x-right{
 						top: -$line-height;
-						left: -0.5em;
 
 						@include r(md){
 							background: $black;
 							padding-left: 0.75em;
-							top: auto;
+							top: -0.5em;
 							right: -3em;
 							left: auto;
 						}
@@ -722,7 +755,27 @@ body{
 					}
 				}
 
-					.archived-project-title{}
+					.archived-project-title{
+						overflow: hidden;
+						position: relative;
+						text-overflow: ellipsis;
+						white-space: nowrap;
+						z-index: 100;
+
+						&:hover{
+							overflow: visible;
+
+							&:after{
+								background: $background;
+								content: "";
+								height: 100%;
+								position: absolute;
+									left: 0;
+								width: calc(100% + 1em);
+								z-index: -1;
+							}
+						}
+					}
 
 					.archived-project-client{}
 
@@ -749,9 +802,9 @@ body{
 						opacity: 0;
 						pointer-events: none;
 						position: absolute;
-							top: -1px;
+							top: 1.2em;
 							left: -1rem;
-						transform: translateX(-100%);
+						transform: translate(-100%, -50%);
 						transition: opacity 0.3s ease-in-out;
 						width: calc(25vw - 1.25rem);
 

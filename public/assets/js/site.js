@@ -276,9 +276,10 @@
 			cacheLength: 4,
 			loadingClass: 'is-loading',
 			onStart: {
-				duration: 500,
+				duration: 800,
 				render: function ( $container ) {
-					$container.addClass('pfft');
+					$container.addClass('pfft'),
+					$body.addClass('transitioning');
 				}
 			},
 			onAfter: function( $container, $newContent ) {
@@ -294,7 +295,8 @@
 				smoothScroll(),
 				topScroll(),
 				windowSize(),
-				$container.removeClass('pfft');
+				$container.removeClass('pfft'),
+				$body.removeClass('transitioning');
 			},
 			prefetch: true
 		};
@@ -337,12 +339,12 @@
 	// Set up the canvas
 	var canvas = document.getElementById("c");
 
-	if( $('#canvas').length > 0 ){
+	if( $('#c').length > 0 ){
 		var body = document.body;
 		var ctx = canvas.getContext("2d");
-		ctx.strokeStyle = "#000";
+		ctx.strokeStyle = "#fff";
 		ctx.font = "bold 16px Arial";
-		ctx.lineWidth = 0.25;
+		ctx.lineWidth = 0.1;
 		ctx.translate(0.5, 0.5);
 		ctx.lineJoin = ctx.lineCap = 'round';
 
