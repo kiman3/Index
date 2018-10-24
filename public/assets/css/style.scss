@@ -1,10 +1,18 @@
+@font-face {
+    font-family: 'Niander';
+    src: url('../fonts/Niander-Regular.woff2') format('woff2'),
+        url('../fonts/Niander-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 @import 'normalize-min.scss';
 @import 'fonts.scss';
 @import 'normalize-opentype-min.scss';
 @import 'flexboxgrid.min.scss';
 
 // Font stacks
-$font: Niander, Neue Haas Grotesk Text Pro, GT Cinetype, Helvetica, Arial, sans-serif;
+$font: Niander, Helvetica, Arial, sans-serif;
 
 // Main colors
 $black: #000000;
