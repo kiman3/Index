@@ -21,13 +21,53 @@
 	}
 	projectsFade();
 
-	// Custom cursor
+	// Current scroll position
+	function scrollCurrentPos(){
+		scrollPos = 0;
+		$(window).scroll(function(){
+    		scrollPos = $(document).scrollTop();
+		});
+	}
+	scrollCurrentPos();
+
+	// Entry images click scrollto navigation
+	function entryImgNav(){
+		entryImg = $('.entry-img');
+		$(entryImg).click(function(){
+			stopScroll();
+			entryNumber = $(this).attr('data-asset-number'),
+			entryNextNumber = ++entryNumber,
+			entryNext = $('#entry-img-' +  entryNextNumber),
+			entryFirst = $('#entry-img-1');
+			if ($(this).hasClass('last-asset')) {
+				$('#entry-preamble').velocity("scroll", {
+					duration: 500
+				});
+			} else {
+				if (scrollPos > 0){
+					$(page).velocity("scroll", {
+						offset: entryNext.offset().top - 22,
+						duration: 500
+					});
+				} else {
+					$(page).velocity("scroll", {
+						offset: entryFirst.offset().top - 22,
+						duration: 500
+					});
+				}
+			}
+		});
+	}
+	entryImgNav();
+
+
+	// Custom cursor move, fade in, fade out
 	function customCursor() {
 		$(document).on('mousemove', function(e) { 
 			$('.cursor').css({
 				'transform' :  'translate(' + e.clientX + 'px ,' + e.clientY + 'px)'  
 			});
-			if ($('.entry-img:hover').length != 0) {
+			if ($('.entry-article-row:hover').length != 0) {
 				$('.cursor').fadeIn(500);
 			} else{
 				$('.cursor').fadeOut(500);
@@ -35,6 +75,20 @@
 		})
 	}
 	customCursor();
+
+
+	// Custom cursor fig update
+	function figUpdate(){
+		var entryImg = $('.entry-img'),
+			cursor = $('.cursor'),
+			totalAssets = $('.last-asset').attr('data-asset-number');
+		$(entryImg).on('mouseover', function(){
+			var assetNumber = $(this).attr('data-asset-number');
+			$(cursor).text('(Fig ' + assetNumber + '/' + totalAssets + ')');
+		});
+	}
+	figUpdate();
+
 
 	// Sorting of archive table
 	function sorting(){
@@ -69,38 +123,6 @@
 	}
 	sorting();
 
-	// Current scroll position
-	function scrollCurrentPos(){
-		scrollPos = 0;
-		$(window).scroll(function(){
-    		scrollPos = $(document).scrollTop();
-		});
-	}
-	scrollCurrentPos();
-
-	// Entry images click scrollto navigation
-	function entryImgNav(){
-		entryImg = $('.entry-img');
-		$(entryImg).click(function(){
-			stopScroll();
-			entryNumber = $(this).attr('data-asset-number'),
-			entryNextNumber = ++entryNumber,
-			entryNext = $('#entry-img-' +  entryNextNumber),
-			entryFirst = $('#entry-img-1');
-			if (scrollPos > 0){
-				$(page).velocity("scroll", {
-					offset: entryNext.offset().top - 36,
-					duration: 500
-				});
-			} else {
-				$(page).velocity("scroll", {
-					offset: entryFirst.offset().top - 36,
-					duration: 500
-				});
-			}
-		});
-	}
-	entryImgNav();
 
 	// Project thumbs loaded, fade in
 	function projectThumbsLoaded(){
@@ -124,12 +146,14 @@
 	}
 	hover('.archived-project');
 
+
 	// Stop scroll animation if user scrolls
 	function stopScroll(){
 		page.on("scroll mousedown wheel DOMMouseScroll mousewheel keyup touchmove", function(){
 			page.velocity("stop");
 		});
 	}
+
 
 	// Anchor smooth scroll
 	function smoothScroll() {
@@ -152,6 +176,7 @@
 		});
 	}
 
+
 	// Top scroll
 	function topScroll(){
 		$('.scroll-top').on('click', function(e){
@@ -166,6 +191,7 @@
 		});
 	}
 	topScroll();
+
 
 	// Entry text scroll
 	function entryTextScroll(){
@@ -193,12 +219,14 @@
 	}
 	entryTextScroll();
 
+
 	// Find window size, define variables
 	function windowSize() {
 		windowHeight = window.innerHeight ? window.innerHeight : $(window).height();
 		windowWidth = window.innerWidth ? window.innerWidth : $(window).width();
 	}
 	windowSize();
+
 
 	// Project img mousemove
 	function projectImgMouseMoveInit(){
@@ -231,6 +259,7 @@
 	}
 	projectImgMouseMoveInit();
 
+
 	// Responsive videos (YouTube and Vimeo embeds)
 	function responsiveVideos(){
 		var iframes = document.getElementsByTagName( 'iframe' );
@@ -256,6 +285,7 @@
 		}
 	}
 	responsiveVideos();
+
 
 	// Set class on body if nav back to home
 	function relHome(){
@@ -283,8 +313,11 @@
 				}
 			},
 			onAfter: function( $container, $newContent ) {
+				customCursor(),
 				entryImgNav(),
+				figUpdate(),
 				hover('.archived-project'),
+				lazySizes.init(),
 				projectImgMouseMoveInit(),
 				projectThumbsLoaded(),
 				projectsFade(),
@@ -304,14 +337,18 @@
 		$('#container').smoothState( settings );
 	});
 
-	// Draw
+
+
+
+
+
+	// Canvas Drawing Demands
+	// a Lot of Code 
 	var canvas = $('#c'),
 		viewportW = $(window).width(),
 		viewportH = $(window).height();
-		docH = $(document).height();
-		// console.log('Total document height: ' + docH + ' px');
 	$(canvas).attr('width', viewportW);
-	$(canvas).attr('height', docH);
+	$(canvas).attr('height', viewportH);
 	$(canvas).addClass('active');
 
 	// Get a regular interval for drawing to the screen
@@ -342,9 +379,14 @@
 	if( $('#c').length > 0 ){
 		var body = document.body;
 		var ctx = canvas.getContext("2d");
-		ctx.strokeStyle = "#fff";
+		
+		ctx.strokeStyle = "rgba(255, 255, 255, 0.1)";
 		ctx.font = "bold 16px Arial";
-		ctx.lineWidth = 0.1;
+		ctx.lineWidth = 1;
+		// ctx.shadowColor = "#fff";
+		// ctx.shadowBlur = 10;
+
+		// ctx.shadowBlur = 10;
 		ctx.translate(0.5, 0.5);
 		ctx.lineJoin = ctx.lineCap = 'round';
 
@@ -451,7 +493,7 @@
 				type: "POST",
 				url: "upload.php",
 				data: { 
-				 imgBase64: dataURL
+					imgBase64: dataURL
 				}
 			}).done(function(o) {
 				console.log('Saved'); 

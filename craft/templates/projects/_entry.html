@@ -7,7 +7,7 @@
 	<div class="col-xs-12 col-md-4">
 		<a href="/" class="home-link" rel="home">Back to index</a>
 	</div>
-	<div class="col-xs-12 col-md-3">
+	<div class="col-xs-12 col-md-4">
 		<p class="entry-position">
 			{% set entryIds = craft.entries.section('projects').orderBy('postDate asc').ids() %}
 			{# Get the position of this entry's ID within our IDs array #}
@@ -20,33 +20,39 @@
 			Project {{ position }}/{{ total }}
 		</p>
 	</div>
+	<div class="col-xs-12 col-md-4">
+		<p class="entry-time">{{ entry.timePeriod }}</p>
+	</div>
+	<div class="entry-preamble col-xs-12 col-md-8 col-md-offset-4" id="entry-preamble">
+		{{ entry.preamble|typogrify }}
+	</div>
 </header>
 {% endblock %}
 
 {% block content %}
 	<article class="entry-article">
 		<header class="entry-article-header row">
-			<div class="col-xs-12 col-md-4">
+			<div class="col-xs-12 col-md-8 col-md-offset-4">
 				<div class="entry-meta">
+					<p class="entry-meta-label">Title</p>
 					<h1 class="entry-title">{{ entry.title|typogrify }}</h1>
 				</div>
 			</div>
-			<div class="col-xs-12 col-md-3">
+			<div class="col-xs-12 col-md-4 col-md-offset-4">
 				<div class="entry-meta">
-					<p class="entry-client">Client</p>
+					<p class="entry-meta-label">Client</p>
+					<p class="entry-client">Client Name</p>
 				</div>
 			</div>
-			<div class="col-xs-12 col-md-2">
-				<a href="#entry-preamble" class="entry-read-more">Read more</a>
-			</div>
-			<div class="col-xs-12 col-md-2">
+			<div class="col-xs-12 col-md-4">
 				<div class="entry-meta">
+					<p class="entry-meta-label">Typology</p>
 					<p class="entry-typology">{{ entry.typology }}</p>
 				</div>
 			</div>
-			<div class="col-xs-12 col-md-1">
-				<p class="entry-time">{{ entry.timePeriod }}</p>
-			</div>
+			{# <div class="col-xs-12 col-md-4">
+				<a href="#entry-preamble" class="entry-read-more">Read more</a>
+			</div> #}
 		</header>
 		<div class="entry-article-content">
 		{% for block in entry.projectContent %}
@@ -56,23 +62,38 @@
 				{% set asset = block.projectImage.one() %}
 				{% if asset %}
 					<div class="col-xs-12 col-md-12">
-						<img src="{{ asset.getUrl }}" alt="Project image" class="entry-img" id="entry-img-{{ loop.index }}" data-asset-number="{{ loop.index }}">
-					</div>
-					<div class="col-xs-12" style="display: none;">
-						<div class="asset-meta">
-							<div class="asset-ext">Image/{{ asset.extension|upper }}</div>
-							<div class="asset-size">{{ ceil(asset.size/1000) }} kB</div>
-							<div class="asset-indice">{{ loop.index }}/{{ loop.length }}</div>
-						</div>
+						<noscript>
+							<figure class="entry-img-container" style="padding-bottom: {{ asset.height / asset.width * 100 }}%;">
+								<img src="{{ asset.url('projectL') }}" class="entry-img" alt="Project image"/>
+								<figcaption class="asset-meta">
+									<div class="asset-ext">Image/{{ asset.extension|upper }}</div>
+									<div class="asset-size">{{ ceil(asset.size/1000) }} kB</div>
+									<div class="asset-indice">{{ loop.index }}/{{ loop.length }}</div>
+								</figcaption>
+							</figure>
+						</noscript>
+						<figure class="entry-img-container" style="padding-bottom: {{ asset.height / asset.width * 100 }}%;">
+							<img id="entry-img-{{ loop.index }}" class="entry-img lazyload {% if loop.last %}last-asset{% endif %}" alt="Project image" data-ratio="{{ asset.height / asset.width }}" 
+							data-asset-number="{{ loop.index }}" 
+							data-sizes="auto" 
+							data-src="{{ asset.url('projectL') }}" 
+							data-srcset="
+							{{ asset.url('projectXL') }} 1500w,
+							{{ asset.url('projectM') }} 1000w,
+							{{ asset.url('projectS') }} 650w"
+							/>
+							<figcaption class="asset-meta">
+								<div class="asset-ext">Image/{{ asset.extension|upper }}</div>
+								<div class="asset-size">{{ ceil(asset.size/1000) }} kB</div>
+								<div class="asset-indice">{{ loop.index }}/{{ loop.length }}</div>
+							</figcaption>
+						</figure>
 					</div>
 				{% endif %}
 			</div>
 			{% endif %}
 
 		{% endfor %}
-		</div>
-		<div class="entry-preamble" id="entry-preamble">
-			{{ entry.preamble }}
 		</div>
 	</article>
 {% endblock %}
@@ -92,10 +113,10 @@
 		<a href="#" class="project-nav">
 			<div class="project-nav-label">Next project</div>
 			<div class="project-nav-title">Oslo 2022 Winter Olympic Bid</div>
-		</a>	
+		</a>
 	</div>
 </footer>
 <div class="cursor">
-	<p>(Fig 1/6)</p>
+	<p></p>
 </div>
 {% endblock %}

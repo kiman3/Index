@@ -4,7 +4,7 @@
 @import 'flexboxgrid.min.scss';
 
 // Font stacks
-$font: Neue Haas Grotesk Text Pro, GT Cinetype, Helvetica, Arial, sans-serif;
+$font: Niander, Neue Haas Grotesk Text Pro, GT Cinetype, Helvetica, Arial, sans-serif;
 
 // Main colors
 $black: #000000;
@@ -16,7 +16,7 @@ $grey2: #999;
 
 // Global measuements
 $padding-main: 1em;
-$line-height: 1.375em;
+$line-height: 1.3125em;
 $line-height-heading: 1.15em;
 $letter-spacing-body: -0.0075em;
 $letter-spacing-large: -0.02em;
@@ -100,14 +100,13 @@ body{
 	font: 400 0.9375em/1.3125 $font;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
-	letter-spacing: $letter-spacing-body;
 	margin: 0;
 	overflow-x: hidden;
 	text-rendering: optimizeLegibility;
 
-	// @include r(xl){
-	// 	font-size: 1em;
-	// }
+	@include r(md){
+		font-size: 1em;
+	}
 }
 
 	a{
@@ -280,7 +279,7 @@ body{
 
 		&:before{
 			animation: blink 2s linear infinite;
-			content: "Loading page";
+			content: "Loading project";
 			position: absolute;
 				top: 1.25em;
 				left: 1.25em;
@@ -308,7 +307,7 @@ body{
 
 		#c{
 			height: 100%;
-			opacity: 0.5;
+			opacity: 0.25;
 			pointer-events: none;
 			position: fixed;
 				top: 0;
@@ -597,15 +596,13 @@ body{
 
 		@include r(md){
 			margin-top: $line-height-heading*5;
-			margin-top: 18vh;
+			margin-top: 7vw;
 		}
 	}
 
 		.entry-article-header{
-			margin-bottom: 0.5em;
-			mix-blend-mode: difference;
-			position: sticky;
-				top: 0.5em;
+			margin-bottom: 1.75em;
+			z-index: 100;
 		}
 
 			.entry-meta{
@@ -613,36 +610,51 @@ body{
 				line-height: 1.15;
 			}
 
+				.entry-meta-label{
+					color: $grey2;
+				}
+
 				.entry-title{
 					line-height: inherit;
 					margin: 0;
-					overflow: hidden;
-					text-overflow: ellipsis;
-					white-space: nowrap;
+						margin-bottom: 1.375rem;
+
+					@include r(md){
+						font-size: 3vw;
+					}
 				}
 
 				.entry-client, .entry-typology{
-					color: $grey2;
+					// color: $grey2;
 				}
 
 				.entry-read-more{
 					text-decoration: none;
 				}
 
+				.entry-title, .entry-client, .entry-typology{
+					display: block;
+					position: sticky;
+						top: 0.5em;
+				}
+
 		.entry-article-content{}
 
 			.entry-article-row{
 				align-items: flex-start;
-				margin-bottom: 2.5em;
+				padding-bottom: 1.5em;
 
 				&:last-of-type{
-					margin-bottom: 1.25em;
+					padding-bottom: 1.25em;
 				}
 			}
 
 				.asset-meta{
 					color: $grey2;
 					@include propFig;
+					position: absolute;
+						top: 0;
+						left: 0;
 				}
 
 					.asset-ext, .asset-size, .asset-chars{
@@ -653,11 +665,35 @@ body{
 						// display: none;
 					}
 
-				.entry-img{
-					cursor: s-resize;
-					float: left;
+				.entry-img-container{
+					height: 0;
+					position: relative;
 					width: 100%;
 				}
+
+					.entry-img{
+						color: $grey2;
+						cursor: s-resize;
+						float: left;
+						position: absolute;
+							top: 0;
+							left: 0;
+						width: 100%;
+						z-index: 50;
+					}
+
+						.no-js img.lazyload{
+							display: none;
+						}
+
+						.lazyload, .lazyloading{
+							opacity: 0;
+						}
+
+						.lazyloaded{
+							opacity: 1;
+							transition: opacity 0.3s ease;
+						}
 
 				.entry-text{
 					font-size: 1.75em;
@@ -681,18 +717,17 @@ body{
 
 		.entry-preamble{
 			color: #ddd;
-			font-size: 1.25em;
-			letter-spacing: $letter-spacing-large;
 			line-height: 1.25;
-			text-indent: 2em;
+			margin-top: $line-height;
+			text-indent: 1em;
 
 			@include r(md){
-				font-size: 2vw;
+				column-count: 2;
+				column-gap: 2.5em;
 			}
 
 			p{
 				max-width: 100%;
-				text-indent: 2em;
 
 				&:first-of-type{
 					text-indent: 0;
@@ -842,12 +877,23 @@ body{
 
 		.about-title{
 			color: $grey2;
-			margin-bottom: $line-height;
 		}
 
 		.about-paragraph{
-			max-width: 100%;
+			margin-left: 1.5em;
+			padding-left: 2em;
+			text-indent: -2em;
 		}
+
+		.about-list{
+			list-style: none;
+			padding-left: 1.5em;
+		}
+
+			.about-list-item{
+				padding-left: 1.5em;
+				text-indent: -1.5em;
+			}
 
 	.cursor{
 		color: #fff;
@@ -861,4 +907,5 @@ body{
 			left: 0;
 		text-align: center;
 		width: 10em;
+		z-index: 1000;
 	}
