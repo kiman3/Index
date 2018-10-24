@@ -46,14 +46,14 @@ function g(){F&&(k.moveTo(S.x,S.y),k.lineTo(P.x,P.y),k.stroke(),S=P)}function b(
 var C=a("html, body"),E=a("body"),x=a(".project");o(),i(),r(),s(),c(),l(),d(),u(".archived-project"),f(),t(),m(),v(),p(),w(),
 // SmoothState
 // Remember to initialize all relevant functions onAfter
-a(function(){var n=a("body"),t={anchors:"a",cacheLength:4,loadingClass:"is-loading",onStart:{duration:800,render:function(t){t.addClass("pfft"),n.addClass("transitioning")}},onAfter:function(t,e){s(),r(),c(),u(".archived-project"),lazySizes.init(),v(),d(),o(),w(),p(),i(),l(),h(),f(),m(),t.removeClass("pfft"),n.removeClass("transitioning")},prefetch:!0};a("#container").smoothState(t)});
+a(function(){var n=a("body"),t={anchors:"a",cacheLength:4,loadingClass:"is-loading",onStart:{duration:100,render:function(t){t.addClass("pfft"),n.addClass("transitioning")}},onAfter:function(t,e){s(),r(),c(),u(".archived-project"),lazySizes.init(),v(),d(),o(),w(),p(),i(),l(),h(),f(),m(),t.removeClass("pfft"),n.removeClass("transitioning")},prefetch:!0};a("#container").smoothState(t)});
 // Canvas Drawing Demands
 // a Lot of Code 
-var j=a("#c"),H=a(window).width(),A=a(window).height(),L,T,N;a(j).attr("width",H),a(j).attr("height",A),a(j).addClass("active"),
+var j=a("#c"),H=a(window).width(),A=a(window).height(),L,T,N;a(j).attr("width",2*H),a(j).attr("height",2*A),a(j).addClass("active"),
 // Get a regular interval for drawing to the screen
 window.requestAnimFrame=window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.oRequestAnimationFrame||window.msRequestAnimaitonFrame||function(t){window.setTimeout(t,1e3/60)},a(document).mousemove(function(t){return T=t.pageX,N=t.pageY,T;return N});
 // Set up the canvas
-var j=document.getElementById("c");if(0<a("#c").length){var E=document.body,k=j.getContext("2d");k.strokeStyle="rgba(255, 255, 255, 0.1)",k.font="bold 16px Arial",k.lineWidth=1,
+var j=document.getElementById("c");if(0<a("#c").length){var E=document.body,k=j.getContext("2d");k.scale(2,2),k.strokeStyle="rgba(255, 255, 255, 0.1)",k.font="bold 16px Arial",k.lineWidth=1,
 // ctx.shadowColor = "#fff";
 // ctx.shadowBlur = 10;
 // ctx.shadowBlur = 10;

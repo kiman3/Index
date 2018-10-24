@@ -306,7 +306,7 @@
 			cacheLength: 4,
 			loadingClass: 'is-loading',
 			onStart: {
-				duration: 800,
+				duration: 100,
 				render: function ( $container ) {
 					$container.addClass('pfft'),
 					$body.addClass('transitioning');
@@ -347,8 +347,8 @@
 	var canvas = $('#c'),
 		viewportW = $(window).width(),
 		viewportH = $(window).height();
-	$(canvas).attr('width', viewportW);
-	$(canvas).attr('height', viewportH);
+	$(canvas).attr('width', viewportW*2);
+	$(canvas).attr('height', viewportH*2);
 	$(canvas).addClass('active');
 
 	// Get a regular interval for drawing to the screen
@@ -380,6 +380,7 @@
 		var body = document.body;
 		var ctx = canvas.getContext("2d");
 		
+		ctx.scale(2,2);
 		ctx.strokeStyle = "rgba(255, 255, 255, 0.1)";
 		ctx.font = "bold 16px Arial";
 		ctx.lineWidth = 1;

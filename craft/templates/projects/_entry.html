@@ -40,19 +40,16 @@
 			</div>
 			<div class="col-xs-12 col-md-4 col-md-offset-4">
 				<div class="entry-meta">
-					<p class="entry-meta-label">Client</p>
-					<p class="entry-client">Client Name</p>
-				</div>
-			</div>
-			<div class="col-xs-12 col-md-4">
-				<div class="entry-meta">
 					<p class="entry-meta-label">Typology</p>
 					<p class="entry-typology">{{ entry.typology }}</p>
 				</div>
 			</div>
-			{# <div class="col-xs-12 col-md-4">
-				<a href="#entry-preamble" class="entry-read-more">Read more</a>
-			</div> #}
+			<div class="col-xs-12 col-md-4">
+				<div class="entry-meta">
+					<p class="entry-meta-label">Client</p>
+					<p class="entry-client">Client Name</p>
+				</div>
+			</div>
 		</header>
 		<div class="entry-article-content">
 		{% for block in entry.projectContent %}

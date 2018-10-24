@@ -232,8 +232,6 @@ body{
 				}
 
 	.footer-main{
-		margin-top: $line-height*5;
-
 		a{
 			text-decoration: none;
 		}
@@ -717,9 +715,8 @@ body{
 
 		.entry-preamble{
 			color: #ddd;
-			line-height: 1.25;
+			line-height: 1.3125;
 			margin-top: $line-height;
-			text-indent: 1em;
 
 			@include r(md){
 				column-count: 2;
@@ -727,11 +724,8 @@ body{
 			}
 
 			p{
+				display: inline;
 				max-width: 100%;
-
-				&:first-of-type{
-					text-indent: 0;
-				}
 			}
 		}
 
